@@ -1,0 +1,154 @@
+[
+ {
+  "name": "1 Enoch",
+  "slug": "1_enoch",
+  "chapters": 102,
+  "verses": 665,
+  "attribution": "R. H. Charles, 1917",
+  "collection": null
+ },
+ {
+  "name": "2 Enoch",
+  "slug": "2_enoch",
+  "chapters": 67,
+  "verses": 319,
+  "attribution": "The Forgotten Books of Eden",
+  "collection": null
+ },
+ {
+  "name": "Jubilees",
+  "slug": "jubilees",
+  "chapters": 50,
+  "verses": 1288,
+  "attribution": "R. H. Charles",
+  "collection": null
+ },
+ {
+  "name": "Jasher",
+  "slug": "jasher",
+  "chapters": 91,
+  "verses": 3910,
+  "attribution": "1840 English translation",
+  "collection": null
+ },
+ {
+  "name": "Testament of Reuben",
+  "slug": "testament_of_reuben",
+  "chapters": 2,
+  "verses": 72,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Simeon",
+  "slug": "testament_of_simeon",
+  "chapters": 3,
+  "verses": 52,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Levi",
+  "slug": "testament_of_levi",
+  "chapters": 5,
+  "verses": 165,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Judah",
+  "slug": "testament_of_judah",
+  "chapters": 4,
+  "verses": 174,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Issachar",
+  "slug": "testament_of_issachar",
+  "chapters": 2,
+  "verses": 62,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Zebulun",
+  "slug": "testament_of_zebulun",
+  "chapters": 2,
+  "verses": 79,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Dan",
+  "slug": "testament_of_dan",
+  "chapters": 2,
+  "verses": 54,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Naphtali",
+  "slug": "testament_of_naphtali",
+  "chapters": 2,
+  "verses": 68,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Gad",
+  "slug": "testament_of_gad",
+  "chapters": 2,
+  "verses": 57,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Asher",
+  "slug": "testament_of_asher",
+  "chapters": 1,
+  "verses": 47,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Joseph",
+  "slug": "testament_of_joseph",
+  "chapters": 2,
+  "verses": 164,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Testament of Benjamin",
+  "slug": "testament_of_benjamin",
+  "chapters": 2,
+  "verses": 79,
+  "attribution": "R. H. Charles",
+  "collection": "Testaments of the Twelve Patriarchs"
+ },
+ {
+  "name": "Psalms of Solomon",
+  "slug": "psalms_of_solomon",
+  "chapters": 18,
+  "verses": 18,
+  "attribution": "G. Buchanan Gray",
+  "collection": null
+ },
+ {
+  "name": "Odes of Solomon",
+  "slug": "odes_of_solomon",
+  "chapters": 41,
+  "verses": 495,
+  "attribution": "J. Rendel Harris",
+  "collection": null
+ },
+ {
+  "name": "Adam and Eve",
+  "slug": "adam_and_eve",
+  "chapters": 79,
+  "verses": 1058,
+  "attribution": "The Forgotten Books of Eden",
+  "collection": null
+ }
+]

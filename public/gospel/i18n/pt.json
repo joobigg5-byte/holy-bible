@@ -1,0 +1,27 @@
+{
+  "_lang": "pt", "_name": "Português", "_confidence": "high", "_verified": false,
+  "title": "Vir a Cristo",
+  "intro": "Se você nunca veio a Cristo, ou não tem certeza se veio, isto está aqui para você. Não há nada para assinar e ninguém está observando. Vá com calma.",
+  "stages": {
+    "need": { "title": "Onde todos começamos",
+      "body": "A Escritura não começa pedindo que você seja bom o bastante. Começa dizendo claramente que nenhum de nós é, e que isso vale para toda pessoa que já viveu. Não é uma acusação. É o chão sobre o qual tudo o mais é construído, e é o mesmo chão para o pregador e para quem o ouve." },
+    "love": { "title": "O que Deus fez a respeito",
+      "body": "O coração do evangelho não é que nós subimos, mas que Deus desceu. Cristo não esperou que melhorássemos primeiro. Ele veio enquanto ainda estávamos errados, e é justamente nisso que tudo está." },
+    "gift": { "title": "Não se pode merecer",
+      "body": "Todo outro sistema pede que você pague, produza, prove. Este não. É um presente, e um presente só pode ser recebido. Se você esperar até ser digno, esperará para sempre, e terá entendido mal o que lhe é oferecido." },
+    "respond": { "title": "Como responder",
+      "body": "A Escritura torna isso notavelmente simples. Creia, e diga. Não uma fórmula recitada perfeitamente, mas um verdadeiro voltar-se do coração posto em palavras." },
+    "assurance": { "title": "Se você orou isso",
+      "body": "Talvez você sinta muito, talvez não sinta nada. Os sentimentos não são a prova, e irão e virão por toda a sua vida. O que se segue é o que a Escritura diz que agora é verdade a seu respeito, sinta hoje o que sentir." },
+    "next": { "title": "E agora",
+      "body": "Isto é um começo, não um fim. Quatro coisas sustentaram os crentes desde os primeiros dias da igreja, e nenhuma delas é complicada." }
+  },
+  "steps": [
+    "Fale com Deus. Sem formalidade. Diariamente, com suas próprias palavras.",
+    "Leia. Um pouco todo dia importa mais do que muito de vez em quando — este aplicativo guardará o lugar para você.",
+    "Encontre outros crentes. A fé não foi feita para ser carregada sozinha, e raramente sobrevive assim.",
+    "Conte a alguém. Diga em voz alta a uma pessoa de confiança. Nada torna isso mais real."
+  ],
+  "prayerIntro": "Não há palavras mágicas. Se você fala a sério, diga com as suas. Se preferir ter palavras para começar, estas servem:",
+  "prayer": "Senhor Jesus, creio que Tu és o Filho de Deus. Creio que morreste na cruz para me resgatar do pecado e da morte e para me restaurar ao Pai. Hoje eu ouvi a Tua Palavra. Abro-Te o meu coração. Recebo-Te como meu Senhor e Salvador pessoal. Arrependo-me dos meus pecados e peço o Teu perdão. Recebo a vida eterna, a abundância da graça e o dom da justiça. Tudo o que tens para mim, eu recebo hoje. Sou nascido de novo. Em nome de Jesus, amém."
+}

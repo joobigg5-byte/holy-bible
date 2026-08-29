@@ -1,0 +1,28 @@
+{
+  "_lang": "zu", "_name": "isiZulu", "_confidence": "low", "_verified": false,
+  "_warning": "Drafted without native fluency. MUST be checked by a Zulu speaker before it is shown to anyone.",
+  "title": "Ukuza kuKristu",
+  "intro": "Uma ungakaze uze kuKristu, noma ungaqinisekile ukuthi wake weza, lokhu kukhona ngenxa yakho. Akukho okumele ukusayine futhi akekho okubukele. Thatha isikhathi sakho.",
+  "stages": {
+    "need": { "title": "Lapho sonke siqala khona",
+      "body": "UmBhalo awuqali ngokucela ukuthi ube muhle ngokwanele. Uqala ngokusho ngokucacile ukuthi akekho noyedwa kithi onjalo, nokuthi lokhu kuyiqiniso ngamuntu wonke owake waphila. Akulona icala elibekwayo. Kuyisisekelo okwakhelwa phezu kwaso konke okunye, futhi kuyisisekelo esifanayo kumshumayeli nakulowo omlalele." },
+    "love": { "title": "Lokho uNkulunkulu akwenzayo ngakho",
+      "body": "Inhliziyo yevangeli akukhona ukuthi thina senyukela phezulu, kodwa ukuthi uNkulunkulu wehlela phansi. UKristu akazange alinde ukuba siqale sibe ngcono. Weza sisesephutheni, futhi yileso sikhathi okuwuwona umongo wonke." },
+    "gift": { "title": "Akunakuzuzwa ngomsebenzi",
+      "body": "Zonke ezinye izinhlelo zicela ukuba ukhokhe, wenze, ufakazele. Lolu alukwenzi lokho. Kuyisipho, futhi isipho singamukelwa kuphela. Uma ulinda uze ufaneleke, uzolinda phakade, futhi uyobe ungakuqondanga lokho okunikwa kona." },
+    "respond": { "title": "Ukuphendula kanjani",
+      "body": "UmBhalo ukwenza kube lula ngendlela emangalisayo. Kholwa, bese ukusho. Akuyona indlela yamazwi ephindwa ngokuphelele, kodwa ukuphenduka kwangempela kwenhliziyo okubekwa emazwini." },
+    "assurance": { "title": "Uma uwuthandazile lowo mthandazo",
+      "body": "Ungase uzwe okuningi, noma ungezwa lutho nhlobo. Imizwa akuwona ubufakazi, futhi izofika ihambe impilo yakho yonke. Okulandelayo yilokho umBhalo okushoyo ukuthi manje kuyiqiniso ngawe, noma namuhla kunjani." },
+    "next": { "title": "Manje kwenzenjani",
+      "body": "Lokhu kuyisiqalo, hhayi isiphetho. Zine izinto ezisekele amakholwa kusukela ezinsukwini zokuqala zebandla, futhi akukho namunye okuyinkimbinkimbi." }
+  },
+  "steps": [
+    "Khuluma noNkulunkulu. Ngaphandle kobunzima. Nsuku zonke, ngamazwi akho.",
+    "Funda. Okuncane nsuku zonke kubaluleke kakhulu kunokuningi ngezikhathi ezithile — le uhlelo lizokugcinela indawo oyifundile.",
+    "Thola amanye amakholwa. Ukholo alwenzelwanga ukuthwalwa wedwa, futhi lusinda kancane uma luthwalwa wedwa.",
+    "Tshela othile. Kusho ngokuzwakalayo kumuntu oyedwa omethembayo. Akukho okunye okukwenza kube ngokoqobo kangako."
+  ],
+  "prayerIntro": "Awekho amazwi omlingo. Uma ukusho ngenhliziyo yakho, kusho ngamazwi akho. Uma ufuna amazwi okuqala ngawo, lawa azokwanela:",
+  "prayer": "Nkosi Jesu, ngiyakholwa ukuthi wena uyiNdodana kaNkulunkulu. Ngiyakholwa ukuthi wafela esiphambanweni ukuze ungikhulule esonweni nasekufeni futhi ungibuyisele kuBaba. Namuhla ngilizwile iZwi lakho. Ngivula inhliziyo yami kuwe. Ngiyakwamukela njengeNkosi yami noMsindisi wami siqu. Ngiyaphenduka ezonweni zami futhi ngicela intethelelo yakho. Ngamukela ukuphila okuphakade, ukuchichima komusa, nesipho sokulunga. Konke onakho ngami, ngiyakwamukela namuhla. Ngizelwe kabusha. Egameni likaJesu, Amen."
+}

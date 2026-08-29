@@ -1,0 +1,582 @@
+{
+ "_readme": [
+  "Teachings catalogue. Three licence tiers, never mixed in the UI.",
+  "",
+  "'public-domain'  quotable text, author dead 70+ years, safe to reproduce.",
+  "'licensed'       text a rights-holder has given written permission for.",
+  "                 Put the permission on file before adding anything here.",
+  "'link-only'      NO text stored. An embed or link to the speaker's own",
+  "                 official channel. The video stays on YouTube; views and",
+  "                 ads go to the ministry. This is the tier for any living",
+  "                 or recent preacher you have not licensed.",
+  "",
+  "Only ever embed from a ministry's OWN verified channel. Fan re-uploads are",
+  "themselves infringing and get removed, leaving dead players in your app."
+ ],
+ "speakers": [
+  {
+   "id": "spurgeon",
+   "name": "Charles H. Spurgeon",
+   "years": "1834-1892",
+   "licence": "public-domain"
+  },
+  {
+   "id": "wesley",
+   "name": "John Wesley",
+   "years": "1703-1791",
+   "licence": "public-domain"
+  },
+  {
+   "id": "moody",
+   "name": "D. L. Moody",
+   "years": "1837-1899",
+   "licence": "public-domain"
+  },
+  {
+   "id": "murray",
+   "name": "Andrew Murray",
+   "years": "1828-1917",
+   "licence": "public-domain"
+  },
+  {
+   "id": "bounds",
+   "name": "E. M. Bounds",
+   "years": "1835-1913",
+   "licence": "public-domain"
+  },
+  {
+   "id": "mueller",
+   "name": "George Müller",
+   "years": "1805-1898",
+   "licence": "public-domain"
+  },
+  {
+   "id": "finney",
+   "name": "Charles Finney",
+   "years": "1792-1875",
+   "licence": "public-domain"
+  },
+  {
+   "id": "whitefield",
+   "name": "George Whitefield",
+   "years": "1714-1770",
+   "licence": "public-domain"
+  }
+ ],
+ "quotes": [
+  {
+   "speaker": "spurgeon",
+   "text": "We will this year gather celestial fruits on earthly ground, where faith and hope have made the desert like the garden of the Lord.",
+   "theme": "faith",
+   "source": "Morning and Evening, morning of 1-1",
+   "scripture": "Joshua 5:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Jesus Christ is Himself the sum and substance of the covenant, and as one of its gifts, He is the property of every believer.",
+   "theme": "faith",
+   "source": "Morning and Evening, morning of 1-3",
+   "scripture": "Isaiah 49:8"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Take up the arms of faith against a sea of trouble, and your opposition shall yet end your distresses.",
+   "theme": "faith",
+   "source": "Morning and Evening, morning of 1-6",
+   "scripture": "1 Peter 5:7"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "My graces languish, my corruptions rage, my faith is weak, my devotion is cold; all these are reasons why His healing hand should be laid upon me.",
+   "theme": "faith",
+   "source": "Morning and Evening, evening of 1-6",
+   "scripture": "Ezekiel 33:22"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Jesus is to believers the one pearl of great price, for whom we are willing to part with all that we have.",
+   "theme": "faith",
+   "source": "Morning and Evening, morning of 1-7",
+   "scripture": "Philippians 1:21"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Come with me, believer, and let us sit upon the top of Nebo, and view the goodly land, even Canaan.",
+   "theme": "faith",
+   "source": "Morning and Evening, morning of 1-10",
+   "scripture": "2 Timothy 4:8"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "All His attributes shall be subjects for contemplation, and as He is infinite under each aspect, there is no fear of exhaustion.",
+   "theme": "fear",
+   "source": "Morning and Evening, evening of 1-10",
+   "scripture": "Job 19:26"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "He is mighty to keep His people holy after He has made them so, and to preserve them in his fear and love until He consummates their spiritual existence in heaven.",
+   "theme": "fear",
+   "source": "Morning and Evening, morning of 1-14",
+   "scripture": "Isaiah 63:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It will cause within you godly watchfulness; you will be afraid to sin against such a love as this.",
+   "theme": "fear",
+   "source": "Morning and Evening, evening of 1-26",
+   "scripture": "Luke 2:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Therefore, bethink thee, when thou shalt pass through the valley of the shadow of death, thou needest fear no evil, for He is with thee.",
+   "theme": "fear",
+   "source": "Morning and Evening, morning of 2-4",
+   "scripture": "Hosea 3:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "The journey of death may be dark, but we may go forth on it fearlessly, knowing that God is with us as we walk through the gloomy valley, and therefore we need fear no evil.",
+   "theme": "fear",
+   "source": "Morning and Evening, morning of 2-7",
+   "scripture": "Micah 2:10"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Instead of dreading the time when we shall leave this world to go unto the Father, we should be panting for the hour of our emancipation.",
+   "theme": "fear",
+   "source": "Morning and Evening, evening of 2-7",
+   "scripture": "Revelation 11:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It may seem a stern attribute, but even that is yours, for He will by His justice see to it that all which is promised to you in the covenant of grace shall be most certainly secured to you.",
+   "theme": "grace",
+   "source": "Morning and Evening, morning of 1-3",
+   "scripture": "Isaiah 49:8"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Across these deep valleys a glorious causeway of grace must be raised.",
+   "theme": "grace",
+   "source": "Morning and Evening, evening of 1-3",
+   "scripture": "Luke 3:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "The light thus preserved by His grace, He will one day develop into the splendour of noonday, and the fullness of glory.",
+   "theme": "grace",
+   "source": "Morning and Evening, evening of 1-5",
+   "scripture": "Genesis 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Our God requires no slaves to grace His throne; He is the Lord of the empire of love, and would have His servants dressed in the livery of joy.",
+   "theme": "grace",
+   "source": "Morning and Evening, evening of 1-9",
+   "scripture": "Psalm 100:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Satan can climb housetops, and enter closets, and even if we could shut out that foul fiend, our own corruptions are enough to work our ruin unless grace prevent.",
+   "theme": "grace",
+   "source": "Morning and Evening, evening of 1-17",
+   "scripture": "2 Samuel 11:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Dear child of God, if after great mercy you are laid very low, your case is not an unusual one.",
+   "theme": "grace",
+   "source": "Morning and Evening, evening of 1-21",
+   "scripture": "Judges 15:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "To be with Jesus in the rest which remaineth for the people of God, is a cheering hope indeed, and to expect this glory so soon is a double bliss.",
+   "theme": "hope",
+   "source": "Morning and Evening, morning of 1-1",
+   "scripture": "Joshua 5:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It is a blessed circumstance that the ignorance is not on His side, for then it would be a hopeless case for us.",
+   "theme": "hope",
+   "source": "Morning and Evening, evening of 1-4",
+   "scripture": "Genesis 42:8"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "This is the masterpiece of all the promises; its enjoyment makes a heaven below, and will make a heaven above.",
+   "theme": "hope",
+   "source": "Morning and Evening, morning of 1-9",
+   "scripture": "Jeremiah 31:33"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Contrary to all expectation, the iron was made to mount from the depth of the stream and to swim; for things impossible with man are possible with God.",
+   "theme": "hope",
+   "source": "Morning and Evening, evening of 1-13",
+   "scripture": "2 Kings 6:6"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "God's promises were never meant to be thrown aside as waste paper; He intended that they should be used.",
+   "theme": "hope",
+   "source": "Morning and Evening, morning of 1-15",
+   "scripture": "2 Samuel 7:25"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Think not that God will be troubled by your importunately reminding Him of His promises.",
+   "theme": "hope",
+   "source": "Morning and Evening, morning of 1-15",
+   "scripture": "2 Samuel 7:25"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "The Lord hath respect unto the lowly, and visits the contrite in heart, but the lofty are an abomination unto Him.",
+   "theme": "humility",
+   "source": "Morning and Evening, evening of 1-3",
+   "scripture": "Luke 3:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It may be that I may walk out and say to myself, 'In what fine order is my garden kept!' This is pride.",
+   "theme": "humility",
+   "source": "Morning and Evening, morning of 1-8",
+   "scripture": "Exodus 28:38"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Rest assured it is harder to know how to be full than it is to know how to be hungryso desperate is the tendency of human nature to pride and forgetfulness of God.",
+   "theme": "humility",
+   "source": "Morning and Evening, morning of 2-10",
+   "scripture": "Philippians 4:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "The humbler a man lies, the more comfort he will always have, because he will be more fitted to receive it.",
+   "theme": "humility",
+   "source": "Morning and Evening, morning of 2-12",
+   "scripture": "2 Corinthians 1:5"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "To Him the lowly offerings of His saints are more acceptable than the thousands of gold and silver.",
+   "theme": "humility",
+   "source": "Morning and Evening, evening of 2-15",
+   "scripture": "Psalm 45:8"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Solitude has its charms and its benefits, and may be useful in checking the lust of the eye and the pride of life; but the devil will follow us into the most lovely retreats.",
+   "theme": "humility",
+   "source": "Morning and Evening, evening of 2-20",
+   "scripture": "Matthew 4:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Joyful is the prospect, and if faith be in active exercise, it will yield unalloyed delight.",
+   "theme": "joy",
+   "source": "Morning and Evening, morning of 1-1",
+   "scripture": "Joshua 5:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "We will not open the gates of the year to the dolorous notes of the sackbut, but to the sweet strains of the harp of joy, and the high sounding cymbals of gladness.",
+   "theme": "joy",
+   "source": "Morning and Evening, evening of 1-1",
+   "scripture": "Song of Songs 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Let others lament over their troubles, we who have the sweetening tree to cast into Marah's bitter pool, with joy will magnify the Lord.",
+   "theme": "joy",
+   "source": "Morning and Evening, evening of 1-1",
+   "scripture": "Song of Songs 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "We WILL, we are resolved about it, Jesus must have the crown of our heart's delight; we will not dishonour our Bridegroom by mourning in His presence.",
+   "theme": "joy",
+   "source": "Morning and Evening, evening of 1-1",
+   "scripture": "Song of Songs 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "We will BE GLAD AND REJOICE: two words with one sense, double joy, blessedness upon blessedness.",
+   "theme": "joy",
+   "source": "Morning and Evening, evening of 1-1",
+   "scripture": "Song of Songs 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Low and grovelling thoughts of God must be given up; doubting and despairing must be removed; and self-seeking and carnal delights must be forsaken.",
+   "theme": "joy",
+   "source": "Morning and Evening, evening of 1-3",
+   "scripture": "Luke 3:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "If you know the love of Jesus-as the hart panteth for the water-brooks, so will you pant after deeper draughts of His love.",
+   "theme": "love",
+   "source": "Morning and Evening, morning of 1-4",
+   "scripture": "2 Peter 3:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "If you do not desire to know Him better, then you love Him not, for love always cries, \"Nearer, nearer.\" Absence from Christ is hell; but the presence of Jesus is heaven.",
+   "theme": "love",
+   "source": "Morning and Evening, morning of 1-4",
+   "scripture": "2 Peter 3:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "An increase of love to Jesus, and a more perfect apprehension of His love to us is one of the best tests of growth in grace.",
+   "theme": "love",
+   "source": "Morning and Evening, morning of 1-4",
+   "scripture": "2 Peter 3:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "The church is the exclusive portion of her Lord; none else may claim a partnership, or pretend to share her love.",
+   "theme": "love",
+   "source": "Morning and Evening, evening of 1-7",
+   "scripture": "Song of Songs 4:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Dwell in the light of thy Lord, and let thy soul be always ravished with His love.",
+   "theme": "love",
+   "source": "Morning and Evening, morning of 1-9",
+   "scripture": "Jeremiah 31:33"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "He is mighty to make the man who hates holiness love it, and to constrain the despiser of His name to bend the knee before Him.",
+   "theme": "love",
+   "source": "Morning and Evening, morning of 1-14",
+   "scripture": "Isaiah 63:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "I know that strong love will make us cry, \"O Lord of Hosts, the waves divide, And land us all in heaven;\" but patience must have her perfect work.",
+   "theme": "perseverance",
+   "source": "Morning and Evening, evening of 2-7",
+   "scripture": "Revelation 11:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Prevention is better than cure: it is better to be so well armed that the devil will not attack you, than to endure the perils of the fight, even though you come off a conqueror.",
+   "theme": "perseverance",
+   "source": "Morning and Evening, evening of 2-9",
+   "scripture": "Luke 11:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Long as immortal spirits livelong as the Father's throne enduresfor ever, for ever, unto Thee shall be glory.",
+   "theme": "perseverance",
+   "source": "Morning and Evening, morning of 2-15",
+   "scripture": "2 Peter 3:18"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Harmlessness follows, as a matter of course; eagles and ravens may hunt their prey-the turtledove can endure wrong, but cannot inflict it.",
+   "theme": "perseverance",
+   "source": "Morning and Evening, evening of 3-3",
+   "scripture": "Matthew 3:16"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "If it pleases Him to bid our patience exercise itself, shall He not do as He wills with His own!",
+   "theme": "perseverance",
+   "source": "Morning and Evening, evening of 3-29",
+   "scripture": "Song of Songs 5:6"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Whom God blesses is blest indeed, and what His lip declares is truth most sure and steadfast.",
+   "theme": "perseverance",
+   "source": "Morning and Evening, evening of 4-14",
+   "scripture": "Isaiah 3:10"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It is interesting to remark how large a portion of Sacred Writ is occupied with the subject of prayer, either in furnishing examples, enforcing precepts, or pronouncing promises.",
+   "theme": "prayer",
+   "source": "Morning and Evening, morning of 1-2",
+   "scripture": "Colossians 4:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "If He has said much about prayer, it is because He knows we have much need of it.",
+   "theme": "prayer",
+   "source": "Morning and Evening, morning of 1-2",
+   "scripture": "Colossians 4:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Prayer is the lisping of the believing infant, the shout of the fighting believer, the requiem of the dying saint falling asleep in Jesus.",
+   "theme": "prayer",
+   "source": "Morning and Evening, morning of 1-2",
+   "scripture": "Colossians 4:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "What poor starvelings some saints are who live without the diligent use of the Word of God and secret prayer!",
+   "theme": "prayer",
+   "source": "Morning and Evening, evening of 1-2",
+   "scripture": "Isaiah 41:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "They love to behold Him in communion and in prayer; but there in heaven they shall have an open and unclouded vision, and thus seeing \"Him as He is,\" shall be made completely like Him.",
+   "theme": "prayer",
+   "source": "Morning and Evening, evening of 1-10",
+   "scripture": "Job 19:26"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "When we pray, He pleads for us; and when we are not praying, He is advocating our cause, and by His supplications shielding us from unseen dangers.",
+   "theme": "prayer",
+   "source": "Morning and Evening, evening of 1-11",
+   "scripture": "Luke 22:32"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "He who is the feeder of sparrows, will also furnish you with what you need.",
+   "theme": "provision",
+   "source": "Morning and Evening, morning of 1-6",
+   "scripture": "1 Peter 5:7"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "His eye is fixed on you, His heart beats with pity for your woe, and His hand omnipotent shall yet bring you the needed help.",
+   "theme": "provision",
+   "source": "Morning and Evening, morning of 1-6",
+   "scripture": "1 Peter 5:7"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "He has wine which no vineyard on earth ever yielded; he has bread which all the corn-fields of Egypt could never bring forth.",
+   "theme": "provision",
+   "source": "Morning and Evening, evening of 1-8",
+   "scripture": "Song of Songs 1:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Providence prospers one, and frustrates the desires of another, in the same business and at the same spot, yet the Great Ruler is as good and wise at one time as another.",
+   "theme": "provision",
+   "source": "Morning and Evening, morning of 1-13",
+   "scripture": "1 Kings 22:48"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "While our hearts are so like a tinder-box, and sparks so plentiful, we had need use all diligence in all places to prevent a blaze.",
+   "theme": "provision",
+   "source": "Morning and Evening, evening of 1-17",
+   "scripture": "2 Samuel 11:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "I will remind you of it, for you shall need a counsellor, and shall find Me ready at your call.\" Mothers do not let their children forget them.",
+   "theme": "provision",
+   "source": "Morning and Evening, evening of 1-23",
+   "scripture": "Song of Songs 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Unbelief shudders at the Jordan which still rolls between us and the goodly land, but let us rest assured that we have already experienced more ills than death at its worst can cause us.",
+   "theme": "rest",
+   "source": "Morning and Evening, morning of 1-1",
+   "scripture": "Joshua 5:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "If this should fall to our lot, there is no reason why the New Year's text should not still be true.",
+   "theme": "rest",
+   "source": "Morning and Evening, morning of 1-1",
+   "scripture": "Joshua 5:12"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It is very comfortable for me to know that I am one of God's peoplebut whether I know it or not, if the Lord knows it, I am still safe.",
+   "theme": "rest",
+   "source": "Morning and Evening, evening of 1-5",
+   "scripture": "Genesis 1:4"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "How shall we thank Him because He never held His peace, but day and night pointed to the wounds upon His hands, and carried our names upon His breastplate!",
+   "theme": "rest",
+   "source": "Morning and Evening, evening of 1-11",
+   "scripture": "Luke 22:32"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It is not enough, however, to admire the spectacle of the innocent bleeding for the guilty, we must make sure of our interest therein.",
+   "theme": "rest",
+   "source": "Morning and Evening, evening of 1-16",
+   "scripture": "Daniel 9:26"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Both at home and abroad we are liable to meet with allurements to evil; the morning opens with peril, and the shades of evening find us still in jeopardy.",
+   "theme": "rest",
+   "source": "Morning and Evening, evening of 1-17",
+   "scripture": "2 Samuel 11:2"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Without constant restoration we are not ready for the perpetual assaults of hell, or the stern afflictions of heaven, or even for the strifes within.",
+   "theme": "suffering",
+   "source": "Morning and Evening, evening of 1-2",
+   "scripture": "Isaiah 41:1"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "It is a happy way of soothing sorrow when we can feel\"HE careth for me.\" Christian!",
+   "theme": "suffering",
+   "source": "Morning and Evening, morning of 1-6",
+   "scripture": "1 Peter 5:7"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Nothing is so sweet as to \"Lie passive in God's hands, And know no will but His.\" O child of suffering, be thou patient; God has not passed thee over in His providence.",
+   "theme": "suffering",
+   "source": "Morning and Evening, morning of 1-6",
+   "scripture": "1 Peter 5:7"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "I am not the only one who is chastened in the night season; let me cheerfully submit to the affliction, and carefully endeavour to be profited thereby.",
+   "theme": "suffering",
+   "source": "Morning and Evening, evening of 1-6",
+   "scripture": "Ezekiel 33:22"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Let us then lift up our souls unto our Saviour, and we may rest assured that He will not suffer us to perish.",
+   "theme": "suffering",
+   "source": "Morning and Evening, evening of 1-14",
+   "scripture": "Matthew 14:30"
+  },
+  {
+   "speaker": "spurgeon",
+   "text": "Here he is born to toil and suffer weariness, but in the land of the immortal, fatigue is never known.",
+   "theme": "suffering",
+   "source": "Morning and Evening, morning of 1-18",
+   "scripture": "Hebrews 4:9"
+  }
+ ],
+ "videos": [],
+ "_video_template": {
+  "speaker": "id from the speakers list, licence must be 'link-only'",
+  "title": "as it appears on the channel",
+  "youtubeId": "the 11-character id from the watch URL",
+  "channel": "the official channel name",
+  "channelUrl": "https://www.youtube.com/@theirofficialhandle",
+  "theme": "one of: faith fear grace hope prayer suffering joy perseverance humility love provision rest",
+  "minutes": 0
+ }
+}

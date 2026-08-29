@@ -1,0 +1,28 @@
+{
+  "_lang": "yo", "_name": "Yorùbá", "_confidence": "low", "_verified": false,
+  "_warning": "Drafted without native fluency. MUST be checked by a Yorùbá speaker before it is shown to anyone.",
+  "title": "Wíwá sọ́dọ̀ Kristi",
+  "intro": "Bí o kò bá tí wá sọ́dọ̀ Kristi rí, tàbí o kò dá ọ lójú pé o ti wá, èyí wà fún ọ. Kò sí ohun tí a ó fọwọ́ sí, kò sì sí ẹnikẹ́ni tí ń wò ọ́. Mú un jẹ́ẹ́jẹ́ẹ́.",
+  "stages": {
+    "need": { "title": "Ibi tí gbogbo wa ti bẹ̀rẹ̀",
+      "body": "Ìwé Mímọ́ kò bẹ̀rẹ̀ pẹ̀lú bíbéèrè pé kí o dára tó. Ó bẹ̀rẹ̀ pẹ̀lú sísọ ní gbangba pé kò sí ẹnìkan nínú wa tí ó dára tó, àti pé òtítọ́ ni èyí nípa gbogbo ènìyàn tí ó ti wà láyé rí. Kì í ṣe ẹ̀sùn. Ìpìlẹ̀ ni tí a fi kọ́ gbogbo ohun tí ó kù, ìpìlẹ̀ kan náà sì ni fún oníwàásù àti fún ẹni tí ń gbọ́." },
+    "love": { "title": "Ohun tí Ọlọ́run ṣe nípa rẹ̀",
+      "body": "Ọkàn ìhìnrere kì í ṣe pé àwa gòkè lọ, bí kò ṣe pé Ọlọ́run sọ̀kalẹ̀ wá. Kristi kò dúró kí a kọ́kọ́ dára sí i. Ó wá nígbà tí a ṣì wà nínú àṣìṣe, àsìkò yìí sì ni kókó gbogbo rẹ̀." },
+    "gift": { "title": "A kò lè ṣiṣẹ́ fún un",
+      "body": "Gbogbo ètò mìíràn ní kí o san owó, kí o ṣiṣẹ́, kí o fi hàn. Èyí kò bẹ́ẹ̀. Ẹ̀bùn ni, ẹ̀bùn sì ni a lè gbà nìkan. Bí o bá dúró títí o fi yẹ, ìwọ yóò dúró títí láé, o ó sì ti ṣì ohun tí a ń fún ọ ní òye." },
+    "respond": { "title": "Bí o ṣe lè dáhùn",
+      "body": "Ìwé Mímọ́ mú un rọrùn gidigidi. Gbàgbọ́, kí o sì sọ ọ́. Kì í ṣe àwọn ọ̀rọ̀ tí a kà ní pípé, bí kò ṣe yíyípadà ọkàn tòótọ́ tí a fi sínú ọ̀rọ̀." },
+    "assurance": { "title": "Bí o bá gbàdúrà yẹn",
+      "body": "O lè ní ìmọ̀lára púpọ̀, tàbí o lè má ní ìmọ̀lára kankan. Ìmọ̀lára kì í ṣe ẹ̀rí, wọn yóò sì máa wá kí wọ́n máa lọ ní gbogbo ayé rẹ. Ohun tí ó tẹ̀lé e ni ohun tí Ìwé Mímọ́ sọ pé ó ti jẹ́ òtítọ́ nípa rẹ nísinsìnyí, bí ọjọ́ òní bá ti rí lára rẹ yóò wù kí ó rí." },
+    "next": { "title": "Kí ni báyìí",
+      "body": "Ìbẹ̀rẹ̀ ni èyí, kì í ṣe òpin. Ohun mẹ́rin ni ó ti gbé àwọn onígbàgbọ́ ró láti àwọn ọjọ́ àkọ́kọ́ ìjọ, kò sì sí ọ̀kan nínú wọn tí ó ṣòro." }
+  },
+  "steps": [
+    "Bá Ọlọ́run sọ̀rọ̀. Láìsí ìlànà. Lójoojúmọ́, ní ọ̀rọ̀ tìrẹ.",
+    "Kà á. Díẹ̀ lójoojúmọ́ ṣe pàtàkì ju púpọ̀ lẹ́ẹ̀kọ̀ọ̀kan lọ — ohun èlò yìí yóò pa ibi tí o dé mọ́ fún ọ.",
+    "Wá àwọn onígbàgbọ́ mìíràn. A kò dá ìgbàgbọ́ láti gbé nìkan, kì í sì í sábà là á já bí a bá gbé e nìkan.",
+    "Sọ fún ẹnìkan. Sọ ọ́ sókè fún ẹnìkan tí o gbẹ́kẹ̀lé. Kò sí ohun tí ó mú un ṣe gidi bí èyí."
+  ],
+  "prayerIntro": "Kò sí ọ̀rọ̀ idán kankan. Bí o bá gbà á gbọ́ tòótọ́, sọ ọ́ ní ọ̀rọ̀ tìrẹ. Bí o bá fẹ́ ọ̀rọ̀ láti fi bẹ̀rẹ̀, àwọn wọ̀nyí tó:",
+  "prayer": "Olúwa Jésù, mo gbàgbọ́ pé Ọmọ Ọlọ́run ni Ọ́. Mo gbàgbọ́ pé o kú lórí àgbélébùú láti gbà mí là kúrò nínú ẹ̀ṣẹ̀ àti ikú, àti láti mú mi padà sọ́dọ̀ Baba. Lónìí mo ti gbọ́ Ọ̀rọ̀ Rẹ. Mo ṣí ọkàn mi sílẹ̀ fún Ọ. Mo gbà Ọ́ gẹ́gẹ́ bí Olúwa mi àti Olùgbàlà ara ẹni mi. Mo ronúpìwàdà ẹ̀ṣẹ̀ mi, mo sì tọrọ ìdáríjì Rẹ. Mo gba ìyè àìnípẹ̀kun, ọ̀pọ̀ oore-ọ̀fẹ́, àti ẹ̀bùn òdodo. Gbogbo ohun tí o ní fún mi, mo gbà á lónìí. A ti bí mi ní ọmọ tuntun. Ní orúkọ Jésù, àmín."
+}

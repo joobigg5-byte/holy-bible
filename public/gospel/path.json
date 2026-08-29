@@ -1,0 +1,140 @@
+{
+  "_note": "Original framing text written for Evening Watch. Scripture references only — the verse text is resolved at runtime from the reader's own translation, so this whole path works in all 15 languages without being retranslated.",
+  "title": "Coming to Christ",
+  "intro": "If you have never come to Christ, or you are not sure whether you have, this is here for you. There is nothing to sign and no one watching. Take it slowly.",
+  "stages": [
+    {
+      "id": "need",
+      "title": "Where we all begin",
+      "body": "Scripture does not begin by asking you to be good enough. It begins by saying plainly that none of us are, and that this is true of every person who has ever lived. This is not an accusation. It is the ground everything else is built on, and it is the same ground for the preacher as for the person hearing him.",
+      "refs": [
+        {
+          "book": "Romans",
+          "chapter": 3,
+          "verse": 23
+        },
+        {
+          "book": "Romans",
+          "chapter": 6,
+          "verse": 23
+        }
+      ]
+    },
+    {
+      "id": "love",
+      "title": "What God did about it",
+      "body": "The heart of the gospel is not that we reached up, but that God came down. Christ did not wait for us to improve first. He came while we were still in the wrong, and that timing is the whole point.",
+      "refs": [
+        {
+          "book": "Romans",
+          "chapter": 5,
+          "verse": 8
+        },
+        {
+          "book": "John",
+          "chapter": 3,
+          "verse": 16
+        }
+      ]
+    },
+    {
+      "id": "gift",
+      "title": "It cannot be earned",
+      "body": "Every other system asks you to pay, to perform, to prove. This one does not. It is a gift, and a gift can only be received. If you are waiting until you are worthy, you will wait for ever, and you will have misunderstood what is being offered.",
+      "refs": [
+        {
+          "book": "Ephesians",
+          "chapter": 2,
+          "verse": 8
+        },
+        {
+          "book": "Revelation",
+          "chapter": 3,
+          "verse": 20
+        }
+      ]
+    },
+    {
+      "id": "respond",
+      "title": "How to respond",
+      "body": "Scripture makes this remarkably simple. Believe, and say so. Not a formula recited perfectly, but a real turning of the heart put into words.",
+      "refs": [
+        {
+          "book": "Romans",
+          "chapter": 10,
+          "verse": 9
+        },
+        {
+          "book": "Romans",
+          "chapter": 10,
+          "verse": 13
+        }
+      ],
+      "prayer": {
+        "intro": "There are no magic words. If you mean it, say it in your own. If you would rather have words to begin with, these will do:",
+        "text": "Lord Jesus, I believe that You are the Son of God. I believe that You died on the cross to rescue me from sin and death and to restore me to the Father. Today, I have heard Your Word. I open my heart to You. I receive You as my Lord and personal Saviour. I repent of my sins and ask for Your forgiveness. I receive eternal life, the abundance of grace, and the gift of righteousness. Everything You have for me, I receive today. I am born again. In Jesus' name, Amen.",
+        "afterword": "If you prayed that and meant it, read what follows. It is what scripture now says is true of you."
+      }
+    },
+    {
+      "id": "assurance",
+      "title": "If you prayed that",
+      "body": "You may feel a great deal or you may feel nothing at all. Feelings are not the evidence, and they will come and go all your life. What follows is what scripture says is now true of you, whether today feels like anything or not.",
+      "refs": [
+        {
+          "book": "John",
+          "chapter": 1,
+          "verse": 12
+        },
+        {
+          "book": "2 Corinthians",
+          "chapter": 5,
+          "verse": 17
+        },
+        {
+          "book": "Romans",
+          "chapter": 8,
+          "verse": 1
+        },
+        {
+          "book": "1 John",
+          "chapter": 5,
+          "verse": 13
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "title": "What now",
+      "body": "This is a beginning, not a finish. Four things have sustained believers since the earliest days of the church, and none of them are complicated.",
+      "steps": [
+        "Talk to God. Not formally. Daily, in your own words.",
+        "Read. A little every day matters more than a lot occasionally — this app will keep the place for you.",
+        "Find other believers. Faith is not meant to be carried alone, and it rarely survives being carried alone.",
+        "Tell someone. Say it out loud to one person you trust. It makes it real in a way nothing else does."
+      ],
+      "refs": [
+        {
+          "book": "Acts",
+          "chapter": 2,
+          "verse": 42
+        },
+        {
+          "book": "2 Timothy",
+          "chapter": 3,
+          "verse": 16
+        },
+        {
+          "book": "Hebrews",
+          "chapter": 10,
+          "verse": 25
+        },
+        {
+          "book": "Matthew",
+          "chapter": 28,
+          "verse": 19
+        }
+      ]
+    }
+  ]
+}

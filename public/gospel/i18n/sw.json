@@ -1,0 +1,27 @@
+{
+  "_lang": "sw", "_name": "Kiswahili", "_confidence": "medium", "_verified": false,
+  "title": "Kumjia Kristo",
+  "intro": "Kama hujawahi kumjia Kristo, au huna uhakika kama umefanya hivyo, hii ipo kwa ajili yako. Hakuna cha kutia sahihi na hakuna anayekutazama. Nenda pole pole.",
+  "stages": {
+    "need": { "title": "Mahali sote tunapoanzia",
+      "body": "Maandiko hayaanzi kwa kukuomba uwe mwema wa kutosha. Yanaanza kwa kusema wazi kwamba hakuna hata mmoja wetu aliye hivyo, na kwamba hili ni kweli kwa kila mtu aliyepata kuishi. Si shtaka. Ni msingi ambao kila kitu kingine hujengwa juu yake, nao ni msingi ule ule kwa mhubiri kama ulivyo kwa yule anayemsikiliza." },
+    "love": { "title": "Alichofanya Mungu kuhusu hilo",
+      "body": "Moyo wa injili si kwamba sisi tulipanda juu, bali kwamba Mungu alishuka chini. Kristo hakungoja kwanza tuwe bora. Alikuja tulipokuwa bado katika makosa, na wakati huo ndio maana yote." },
+    "gift": { "title": "Haiwezi kupatikana kwa juhudi",
+      "body": "Kila mfumo mwingine unakuomba ulipe, utende, uthibitishe. Huu hauombi. Ni zawadi, na zawadi hupokewa tu. Ukingoja hadi ustahili, utangoja milele, nawe utakuwa umekosa kuelewa kile unachopewa." },
+    "respond": { "title": "Jinsi ya kuitikia",
+      "body": "Maandiko huifanya hii kuwa rahisi kwa ajabu. Amini, na useme hivyo. Si maneno yaliyokaririwa kwa ukamilifu, bali kugeuka kwa kweli kwa moyo kulikowekwa katika maneno." },
+    "assurance": { "title": "Kama umeomba maombi hayo",
+      "body": "Unaweza kuhisi mengi, au usihisi chochote. Hisia si uthibitisho, nazo zitakuja na kwenda maisha yako yote. Yanayofuata ni yale Maandiko yasemayo sasa ni kweli juu yako, hata kama leo hujisikii lolote." },
+    "next": { "title": "Sasa nini",
+      "body": "Huu ni mwanzo, si mwisho. Mambo manne yamewategemeza waamini tangu siku za kwanza za kanisa, wala hakuna hata moja lililo gumu." }
+  },
+  "steps": [
+    "Zungumza na Mungu. Bila urasmi. Kila siku, kwa maneno yako mwenyewe.",
+    "Soma. Kidogo kila siku ni bora kuliko kingi mara chache — programu hii itakukumbukia ulipoishia.",
+    "Tafuta waamini wengine. Imani haikuumbwa ibebwe peke yako, na mara chache huvumilia ikibebwa peke yake.",
+    "Mwambie mtu. Sema kwa sauti kwa mtu mmoja unayemwamini. Hakuna kinachoifanya iwe halisi kama hivyo."
+  ],
+  "prayerIntro": "Hakuna maneno ya kichawi. Kama unamaanisha, sema kwa maneno yako. Kama ungependa maneno ya kuanzia, haya yanatosha:",
+  "prayer": "Bwana Yesu, ninaamini kwamba Wewe ni Mwana wa Mungu. Ninaamini kwamba ulikufa msalabani ili kuniokoa kutoka dhambini na mautini, na kunirudisha kwa Baba. Leo nimelisikia Neno lako. Ninakufungulia moyo wangu. Ninakupokea kuwa Bwana wangu na Mwokozi wangu binafsi. Ninatubu dhambi zangu na kuomba msamaha wako. Ninapokea uzima wa milele, wingi wa neema, na kipawa cha haki. Kila kitu ulicho nacho kwa ajili yangu, ninakipokea leo. Nimezaliwa mara ya pili. Kwa jina la Yesu, amina."
+}

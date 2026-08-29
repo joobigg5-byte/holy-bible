@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=EB+Garamond:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 43 56% 53%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 43 56% 53%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 43 56% 53%;
+
+    --primary: 43 56% 53%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 43 80% 38%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 43 100% 10%;
+    --muted-foreground: 43 56% 40%;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 43 100% 10%;
+    --input: 43 100% 10%;
+    --ring: 43 56% 53%;
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 43 56% 53%;
+    --sidebar-primary: 43 56% 53%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 43 100% 10%;
+    --sidebar-accent-foreground: 43 56% 53%;
+    --sidebar-border: 43 100% 10%;
+    --sidebar-ring: 43 56% 53%;
+
+    /* Sacred palette tokens */
+    --gold-metallic: 43 56% 53%;
+    --gold-muted: 43 86% 38%;
+    --gold-bright: 51 100% 50%;
+    --gold-dark: 43 100% 10%;
+    --gold-veil: 43 53% 28%;
+    --sacred-black: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 43 56% 53%;
+    --card: 0 0% 3%;
+    --card-foreground: 43 56% 53%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 43 56% 53%;
+    --primary: 43 56% 53%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 43 80% 38%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 43 100% 10%;
+    --muted-foreground: 43 56% 40%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 43 100% 10%;
+    --input: 43 100% 10%;
+    --ring: 43 56% 53%;
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 43 56% 53%;
+    --sidebar-primary: 43 56% 53%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 43 100% 10%;
+    --sidebar-accent-foreground: 43 56% 53%;
+    --sidebar-border: 43 100% 10%;
+    --sidebar-ring: 43 56% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Crimson Pro', 'EB Garamond', 'Times New Roman', serif;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .font-book-name {
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .font-verse-number {
+    font-weight: 300;
+    font-size: 0.75em;
+  }
+
+  .text-gold-metallic {
+    color: hsl(var(--gold-metallic));
+  }
+
+  .text-gold-muted {
+    color: hsl(var(--gold-muted));
+  }
+
+  .text-gold-bright {
+    color: hsl(var(--gold-bright));
+  }
+
+  .text-gold-veil {
+    color: hsl(var(--gold-veil));
+  }
+
+  .border-gold-dark {
+    border-color: hsl(var(--gold-dark));
+  }
+
+  .bg-sacred-black {
+    background-color: hsl(var(--sacred-black));
+  }
+
+  .gold-pulse {
+    animation: goldPulse 1.5s ease-in-out;
+  }
+}
+
+@keyframes goldPulse {
+  0%, 100% { text-shadow: 0 0 0px transparent; }
+  50% { text-shadow: 0 0 20px hsl(51 100% 50% / 0.3); }
+}
+
+@keyframes fadeInWord {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Sacred scrollbar — language selector */
+.lang-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #B8960C #000000;
+}
+.lang-scroll::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+.lang-scroll::-webkit-scrollbar-track {
+  background: #000000;
+}
+.lang-scroll::-webkit-scrollbar-thumb {
+  background: #B8960C;
+  border-radius: 2px;
+}
+.lang-scroll::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+.lang-scroll::-webkit-scrollbar-button {
+  display: none;
+}

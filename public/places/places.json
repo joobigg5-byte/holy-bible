@@ -1,0 +1,280 @@
+{
+  "_note": "Biblical places and where they are now. Every entry carries a `certainty` field, because the difference between an excavated site and a pious tradition matters and most apps blur it.",
+  "_certainty": {
+    "identified": "Archaeologically identified. Not seriously disputed.",
+    "continuous": "The city never stopped being inhabited — the modern city IS the ancient one.",
+    "traditional": "A long-held identification, plausible but not proven.",
+    "disputed": "Scholars propose several sites. No consensus.",
+    "unknown": "Location genuinely not known."
+  },
+  "places": [
+    { "name": "Garden of Eden", "modern": "Unknown", "country": null, "certainty": "unknown",
+      "note": "No location is known. Proposals have placed it in Armenia, near the Caspian, in Syria, in southern Arabia and in Babylonia. Easton's own entry from 1897 calls it the most discussed geographical question there is. Anyone who tells you where it was is guessing.",
+      "refs": [{"book":"Genesis","chapter":2,"verse":8}] },
+
+    { "name": "Ararat", "modern": "Mount Ararat, Ağrı Province", "country": "Türkiye",
+      "lat": 39.7025, "lon": 44.2989, "certainty": "traditional",
+      "note": "Genesis says the ark rested on 'the mountains of Ararat' — a region, not a peak. The identification with this specific mountain is later tradition.",
+      "refs": [{"book":"Genesis","chapter":8,"verse":4}] },
+
+    { "name": "Babel / Babylon", "modern": "Near Hillah, Babil Governorate", "country": "Iraq",
+      "lat": 32.5355, "lon": 44.4275, "certainty": "identified",
+      "note": "Extensively excavated, about 85 km south of Baghdad. The tower is usually connected with Etemenanki, the great ziggurat whose foundations survive.",
+      "refs": [{"book":"Genesis","chapter":11,"verse":9},{"book":"Daniel","chapter":4,"verse":30}] },
+
+    { "name": "Ur of the Chaldees", "modern": "Tell el-Muqayyar, Dhi Qar", "country": "Iraq",
+      "lat": 30.9626, "lon": 46.1030, "certainty": "identified",
+      "note": "Abraham's birthplace. The ziggurat still stands, one of the best preserved in Mesopotamia.",
+      "refs": [{"book":"Genesis","chapter":11,"verse":31}] },
+
+    { "name": "Nineveh", "modern": "Mosul", "country": "Iraq",
+      "lat": 36.3597, "lon": 43.1525, "certainty": "identified",
+      "note": "The mounds of Kuyunjik and Nebi Yunus sit inside modern Mosul. Jonah's city; much of the site was destroyed in 2014-2015.",
+      "refs": [{"book":"Jonah","chapter":3,"verse":3},{"book":"Nahum","chapter":1,"verse":1}] },
+
+    { "name": "Sodom and Gomorrah", "modern": "Disputed — southern Dead Sea region", "country": "Jordan",
+      "lat": 31.2500, "lon": 35.5000, "certainty": "disputed",
+      "note": "Bab edh-Dhra and Numeira are the long-standing candidates; Tall el-Hammam north of the Dead Sea has been argued more recently. Nothing is settled.",
+      "refs": [{"book":"Genesis","chapter":19,"verse":24}] },
+
+    { "name": "Mount Sinai / Horeb", "modern": "Disputed — traditionally Jebel Musa, Sinai", "country": "Egypt",
+      "lat": 28.5392, "lon": 33.9750, "certainty": "disputed",
+      "note": "The traditional site has St Catherine's Monastery at its foot and dates to Byzantine times. Jebel al-Lawz in Saudi Arabia and several Negev peaks have also been proposed.",
+      "refs": [{"book":"Exodus","chapter":19,"verse":20}] },
+
+    { "name": "Jericho", "modern": "Tell es-Sultan, beside modern Jericho", "country": "West Bank",
+      "lat": 31.8711, "lon": 35.4442, "certainty": "identified",
+      "note": "Among the oldest continuously occupied places on earth, with walls dating back roughly 10,000 years.",
+      "refs": [{"book":"Joshua","chapter":6,"verse":20}] },
+
+    { "name": "Jerusalem", "modern": "Jerusalem", "country": "Israel / Palestine",
+      "lat": 31.7683, "lon": 35.2137, "certainty": "continuous",
+      "note": "Never ceased to be inhabited. The City of David, the Temple Mount and the Pool of Siloam are all visitable.",
+      "refs": [{"book":"2 Samuel","chapter":5,"verse":7}] },
+
+    { "name": "Bethlehem", "modern": "Bethlehem", "country": "West Bank",
+      "lat": 31.7054, "lon": 35.2024, "certainty": "continuous",
+      "note": "About 10 km south of Jerusalem. The Church of the Nativity has stood over the traditional site since the 4th century.",
+      "refs": [{"book":"Micah","chapter":5,"verse":2},{"book":"Luke","chapter":2,"verse":4}] },
+
+    { "name": "Nazareth", "modern": "Nazareth", "country": "Israel",
+      "lat": 32.7021, "lon": 35.2978, "certainty": "continuous",
+      "note": "A small village of perhaps a few hundred people in the first century; now the largest Arab city in Israel.",
+      "refs": [{"book":"Luke","chapter":2,"verse":39}] },
+
+    { "name": "Capernaum", "modern": "Kfar Nahum, Sea of Galilee", "country": "Israel",
+      "lat": 32.8808, "lon": 35.5750, "certainty": "identified",
+      "note": "Jesus' base in Galilee. The synagogue ruins and the house traditionally held to be Peter's are both excavated.",
+      "refs": [{"book":"Matthew","chapter":4,"verse":13}] },
+
+    { "name": "Sea of Galilee", "modern": "Lake Kinneret", "country": "Israel",
+      "lat": 32.8000, "lon": 35.5833, "certainty": "identified",
+      "note": "Also called Gennesaret and Tiberias in scripture. Israel's largest freshwater lake.",
+      "refs": [{"book":"Mark","chapter":1,"verse":16}] },
+
+    { "name": "Mount Carmel", "modern": "Carmel range, near Haifa", "country": "Israel",
+      "lat": 32.7333, "lon": 35.0500, "certainty": "identified",
+      "note": "Where Elijah confronted the prophets of Baal.",
+      "refs": [{"book":"1 Kings","chapter":18,"verse":20}] },
+
+    { "name": "Mount Nebo", "modern": "Mount Nebo, Madaba", "country": "Jordan",
+      "lat": 31.7683, "lon": 35.7256, "certainty": "traditional",
+      "note": "Where Moses saw the promised land. On a clear day you can see Jericho and the hills of Jerusalem.",
+      "refs": [{"book":"Deuteronomy","chapter":34,"verse":1}] },
+
+    { "name": "Hebron", "modern": "Hebron", "country": "West Bank",
+      "lat": 31.5326, "lon": 35.0998, "certainty": "continuous",
+      "note": "The Cave of Machpelah, burial place of Abraham and Sarah, lies under a Herodian enclosure still standing.",
+      "refs": [{"book":"Genesis","chapter":23,"verse":19}] },
+
+    { "name": "Shiloh", "modern": "Khirbet Seilun", "country": "West Bank",
+      "lat": 32.0556, "lon": 35.2894, "certainty": "identified",
+      "note": "Where the tabernacle stood before the temple, and where Samuel was called.",
+      "refs": [{"book":"1 Samuel","chapter":3,"verse":21}] },
+
+    { "name": "Megiddo", "modern": "Tel Megiddo", "country": "Israel",
+      "lat": 32.5847, "lon": 35.1839, "certainty": "identified",
+      "note": "A UNESCO site with 26 layers of settlement. The name behind 'Armageddon' — Har Megiddo, the hill of Megiddo.",
+      "refs": [{"book":"Revelation","chapter":16,"verse":16}] },
+
+    { "name": "Damascus", "modern": "Damascus", "country": "Syria",
+      "lat": 33.5138, "lon": 36.2765, "certainty": "continuous",
+      "note": "Among the oldest continuously inhabited cities anywhere. Straight Street, where Paul lodged after his conversion, is still a street.",
+      "refs": [{"book":"Acts","chapter":9,"verse":11}] },
+
+    { "name": "Antioch", "modern": "Antakya, Hatay", "country": "Türkiye",
+      "lat": 36.2021, "lon": 36.1603, "certainty": "continuous",
+      "note": "Where believers were first called Christians. Severely damaged in the 2023 earthquake.",
+      "refs": [{"book":"Acts","chapter":11,"verse":26}] },
+
+    { "name": "Tarsus", "modern": "Tarsus, Mersin", "country": "Türkiye",
+      "lat": 36.9177, "lon": 34.8951, "certainty": "continuous",
+      "note": "Paul's birthplace.",
+      "refs": [{"book":"Acts","chapter":21,"verse":39}] },
+
+    { "name": "Ephesus", "modern": "Near Selçuk, İzmir", "country": "Türkiye",
+      "lat": 37.9395, "lon": 27.3417, "certainty": "identified",
+      "note": "One of the best-preserved classical cities in the Mediterranean. The theatre where the silversmiths rioted still stands.",
+      "refs": [{"book":"Acts","chapter":19,"verse":29},{"book":"Revelation","chapter":2,"verse":1}] },
+
+    { "name": "Smyrna", "modern": "İzmir", "country": "Türkiye",
+      "lat": 38.4237, "lon": 27.1428, "certainty": "continuous",
+      "note": "Second of the seven churches. Now Türkiye's third largest city.",
+      "refs": [{"book":"Revelation","chapter":2,"verse":8}] },
+
+    { "name": "Pergamum", "modern": "Bergama, İzmir", "country": "Türkiye",
+      "lat": 39.1319, "lon": 27.1836, "certainty": "identified",
+      "note": "The acropolis and its steep theatre survive above the modern town.",
+      "refs": [{"book":"Revelation","chapter":2,"verse":12}] },
+
+    { "name": "Thyatira", "modern": "Akhisar, Manisa", "country": "Türkiye",
+      "lat": 38.9186, "lon": 27.8408, "certainty": "identified",
+      "note": "Lydia, the seller of purple, came from here. Remains sit within the modern town.",
+      "refs": [{"book":"Revelation","chapter":2,"verse":18},{"book":"Acts","chapter":16,"verse":14}] },
+
+    { "name": "Sardis", "modern": "Sart, Manisa", "country": "Türkiye",
+      "lat": 38.4886, "lon": 28.0403, "certainty": "identified",
+      "note": "Once capital of Lydia and fabulously rich. The synagogue and gymnasium are excavated.",
+      "refs": [{"book":"Revelation","chapter":3,"verse":1}] },
+
+    { "name": "Philadelphia", "modern": "Alaşehir, Manisa", "country": "Türkiye",
+      "lat": 38.3494, "lon": 28.5183, "certainty": "continuous",
+      "note": "The church that was told it had 'a little strength'. Still a working town.",
+      "refs": [{"book":"Revelation","chapter":3,"verse":7}] },
+
+    { "name": "Laodicea", "modern": "Near Denizli", "country": "Türkiye",
+      "lat": 37.8358, "lon": 29.1078, "certainty": "identified",
+      "note": "The lukewarm church. Its water arrived by aqueduct from hot springs at Hierapolis and cold springs elsewhere — tepid by the time it came, which is likely the point of the rebuke.",
+      "refs": [{"book":"Revelation","chapter":3,"verse":16}] },
+
+    { "name": "Colossae", "modern": "Near Honaz, Denizli", "country": "Türkiye",
+      "lat": 37.7906, "lon": 29.2606, "certainty": "identified",
+      "note": "Located but barely excavated — the mound is still largely untouched.",
+      "refs": [{"book":"Colossians","chapter":1,"verse":2}] },
+
+    { "name": "Iconium", "modern": "Konya", "country": "Türkiye",
+      "lat": 37.8746, "lon": 32.4932, "certainty": "continuous",
+      "refs": [{"book":"Acts","chapter":14,"verse":1}] },
+
+    { "name": "Troas", "modern": "Dalyan, Çanakkale", "country": "Türkiye",
+      "lat": 39.7539, "lon": 26.1592, "certainty": "identified",
+      "note": "Where Paul saw the vision of the man of Macedonia, and where Eutychus fell from the window.",
+      "refs": [{"book":"Acts","chapter":16,"verse":8},{"book":"Acts","chapter":20,"verse":9}] },
+
+    { "name": "Miletus", "modern": "Balat, Aydın", "country": "Türkiye",
+      "lat": 37.5306, "lon": 27.2783, "certainty": "identified",
+      "note": "Where Paul said farewell to the Ephesian elders. Silt has left the once-great harbour several kilometres inland.",
+      "refs": [{"book":"Acts","chapter":20,"verse":17}] },
+
+    { "name": "Athens", "modern": "Athens", "country": "Greece",
+      "lat": 37.9838, "lon": 23.7275, "certainty": "continuous",
+      "note": "The Areopagus, where Paul spoke of the unknown god, is a bare rock below the Acropolis that you can still climb.",
+      "refs": [{"book":"Acts","chapter":17,"verse":22}] },
+
+    { "name": "Corinth", "modern": "Ancient Corinth, near Korinthos", "country": "Greece",
+      "lat": 37.9061, "lon": 22.8783, "certainty": "identified",
+      "note": "The bema — the judgment seat where Paul stood before Gallio — is excavated and identifiable.",
+      "refs": [{"book":"Acts","chapter":18,"verse":1}] },
+
+    { "name": "Philippi", "modern": "Near Kavala", "country": "Greece",
+      "lat": 41.0136, "lon": 24.2864, "certainty": "identified",
+      "note": "A UNESCO site. The traditional place of Lydia's baptism is on the river nearby.",
+      "refs": [{"book":"Acts","chapter":16,"verse":12}] },
+
+    { "name": "Thessalonica", "modern": "Thessaloniki", "country": "Greece",
+      "lat": 40.6401, "lon": 22.9444, "certainty": "continuous",
+      "refs": [{"book":"Acts","chapter":17,"verse":1}] },
+
+    { "name": "Berea", "modern": "Veria", "country": "Greece",
+      "lat": 40.5236, "lon": 22.2028, "certainty": "continuous",
+      "note": "Whose people 'searched the scriptures daily'.",
+      "refs": [{"book":"Acts","chapter":17,"verse":11}] },
+
+    { "name": "Patmos", "modern": "Patmos", "country": "Greece",
+      "lat": 37.3089, "lon": 26.5475, "certainty": "identified",
+      "note": "Where John received the Revelation. The Cave of the Apocalypse is a pilgrimage site.",
+      "refs": [{"book":"Revelation","chapter":1,"verse":9}] },
+
+    { "name": "Rome", "modern": "Rome", "country": "Italy",
+      "lat": 41.9028, "lon": 12.4964, "certainty": "continuous",
+      "refs": [{"book":"Acts","chapter":28,"verse":16},{"book":"Romans","chapter":1,"verse":7}] },
+
+    { "name": "Malta", "modern": "Malta", "country": "Malta",
+      "lat": 35.9375, "lon": 14.3754, "certainty": "identified",
+      "note": "Where Paul was shipwrecked. St Paul's Bay is the traditional landing place.",
+      "refs": [{"book":"Acts","chapter":28,"verse":1}] },
+
+    { "name": "Tyre", "modern": "Sour", "country": "Lebanon",
+      "lat": 33.2705, "lon": 35.2038, "certainty": "continuous",
+      "note": "Alexander's siege causeway permanently joined the island city to the mainland; it is a peninsula now.",
+      "refs": [{"book":"Ezekiel","chapter":26,"verse":4}] },
+
+    { "name": "Sidon", "modern": "Saida", "country": "Lebanon",
+      "lat": 33.5571, "lon": 35.3729, "certainty": "continuous",
+      "refs": [{"book":"Matthew","chapter":15,"verse":21}] },
+
+    { "name": "Joppa", "modern": "Jaffa, part of Tel Aviv", "country": "Israel",
+      "lat": 32.0533, "lon": 34.7519, "certainty": "continuous",
+      "note": "Where Jonah took ship, and where Peter saw the sheet let down from heaven.",
+      "refs": [{"book":"Jonah","chapter":1,"verse":3},{"book":"Acts","chapter":10,"verse":9}] },
+
+    { "name": "Caesarea Maritima", "modern": "Caesarea National Park", "country": "Israel",
+      "lat": 32.5000, "lon": 34.8917, "certainty": "identified",
+      "note": "Herod's harbour city. The theatre, hippodrome and aqueduct are excavated; part of the harbour is now underwater.",
+      "refs": [{"book":"Acts","chapter":10,"verse":1}] },
+
+    { "name": "Caesarea Philippi", "modern": "Banias, Golan Heights", "country": "Israel-administered",
+      "lat": 33.2483, "lon": 35.6944, "certainty": "identified",
+      "note": "Where Peter confessed Jesus as the Christ, before a cliff face full of pagan shrines.",
+      "refs": [{"book":"Matthew","chapter":16,"verse":13}] },
+
+    { "name": "Beersheba", "modern": "Be'er Sheva", "country": "Israel",
+      "lat": 31.2518, "lon": 34.7913, "certainty": "continuous",
+      "refs": [{"book":"Genesis","chapter":21,"verse":31}] },
+
+    { "name": "Bethel", "modern": "Beitin", "country": "West Bank",
+      "lat": 31.9308, "lon": 35.2214, "certainty": "traditional",
+      "note": "Where Jacob dreamed of the ladder. The identification with Beitin is widely held but not certain.",
+      "refs": [{"book":"Genesis","chapter":28,"verse":19}] },
+
+    { "name": "Bethany", "modern": "Al-Eizariya", "country": "West Bank",
+      "lat": 31.7714, "lon": 35.2622, "certainty": "traditional",
+      "note": "Home of Mary, Martha and Lazarus. The Arabic name means 'place of Lazarus'.",
+      "refs": [{"book":"John","chapter":11,"verse":1}] },
+
+    { "name": "Cana", "modern": "Disputed — traditionally Kafr Kanna", "country": "Israel",
+      "lat": 32.7469, "lon": 35.3419, "certainty": "disputed",
+      "note": "Kafr Kanna is the pilgrimage site, but Khirbet Qana some 9 km north is the stronger archaeological candidate.",
+      "refs": [{"book":"John","chapter":2,"verse":1}] },
+
+    { "name": "Mount Hermon", "modern": "Jabal al-Shaykh", "country": "Syria / Lebanon",
+      "lat": 33.4162, "lon": 35.8571, "certainty": "identified",
+      "note": "Often proposed as the mount of the Transfiguration, though Tabor holds the older tradition.",
+      "refs": [{"book":"Psalms","chapter":133,"verse":3}] },
+
+    { "name": "Shushan / Susa", "modern": "Shush, Khuzestan", "country": "Iran",
+      "lat": 32.1897, "lon": 48.2578, "certainty": "identified",
+      "note": "Esther's city, and where Daniel saw the vision of the ram and goat. A UNESCO site.",
+      "refs": [{"book":"Esther","chapter":1,"verse":2},{"book":"Daniel","chapter":8,"verse":2}] },
+
+    { "name": "No-Amon / Thebes", "modern": "Luxor", "country": "Egypt",
+      "lat": 25.6872, "lon": 32.6396, "certainty": "identified",
+      "note": "The Egyptian capital denounced by Nahum and Jeremiah. Karnak and the Valley of the Kings are here.",
+      "refs": [{"book":"Nahum","chapter":3,"verse":8}] },
+
+    { "name": "Alexandria", "modern": "Alexandria", "country": "Egypt",
+      "lat": 31.2001, "lon": 29.9187, "certainty": "continuous",
+      "note": "Apollos came from here, and it is where the Septuagint was made.",
+      "refs": [{"book":"Acts","chapter":18,"verse":24}] },
+
+    { "name": "Mount Ebal and Mount Gerizim", "modern": "Above Nablus", "country": "West Bank",
+      "lat": 32.2000, "lon": 35.2731, "certainty": "identified",
+      "note": "The mountains of blessing and cursing, facing each other across the valley where Nablus now sits. Shechem lay between them.",
+      "refs": [{"book":"Deuteronomy","chapter":11,"verse":29}] },
+
+    { "name": "Emmaus", "modern": "Disputed", "country": "Israel / West Bank",
+      "lat": 31.8394, "lon": 34.9894, "certainty": "disputed",
+      "note": "Four candidate sites, none agreed. Luke's stated distance from Jerusalem varies between manuscripts, which is part of the difficulty.",
+      "refs": [{"book":"Luke","chapter":24,"verse":13}] }
+  ]
+}

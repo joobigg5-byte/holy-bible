@@ -1,0 +1,27 @@
+{
+  "_lang": "it", "_name": "Italiano", "_confidence": "high", "_verified": false,
+  "title": "Venire a Cristo",
+  "intro": "Se non sei mai venuto a Cristo, o non sei sicuro di averlo fatto, questo è per te. Non c'è nulla da firmare e nessuno ti sta guardando. Prenditi il tuo tempo.",
+  "stages": {
+    "need": { "title": "Da dove cominciamo tutti",
+      "body": "La Scrittura non comincia chiedendoti di essere abbastanza buono. Comincia dicendo chiaramente che nessuno di noi lo è, e che questo vale per ogni persona mai vissuta. Non è un'accusa. È il terreno su cui tutto il resto è costruito, ed è lo stesso terreno per il predicatore come per chi lo ascolta." },
+    "love": { "title": "Ciò che Dio ha fatto",
+      "body": "Il cuore del vangelo non è che noi siamo saliti, ma che Dio è disceso. Cristo non ha aspettato che migliorassimo prima. È venuto mentre eravamo ancora nell'errore, e proprio in questo sta tutto." },
+    "gift": { "title": "Non si può guadagnare",
+      "body": "Ogni altro sistema ti chiede di pagare, di rendere, di dimostrare. Questo no. È un dono, e un dono si può soltanto ricevere. Se aspetti di esserne degno, aspetterai per sempre, e avrai frainteso ciò che ti viene offerto." },
+    "respond": { "title": "Come rispondere",
+      "body": "La Scrittura lo rende straordinariamente semplice. Credi, e dillo. Non una formula recitata alla perfezione, ma un vero volgersi del cuore messo in parole." },
+    "assurance": { "title": "Se hai pregato così",
+      "body": "Forse sentirai molto, forse non sentirai nulla. I sentimenti non sono la prova, e andranno e verranno per tutta la vita. Ciò che segue è quanto la Scrittura dice che ora è vero di te, comunque ti senta oggi." },
+    "next": { "title": "E adesso",
+      "body": "Questo è un inizio, non una conclusione. Quattro cose hanno sostenuto i credenti fin dai primi giorni della chiesa, e nessuna è complicata." }
+  },
+  "steps": [
+    "Parla con Dio. Senza formalità. Ogni giorno, con parole tue.",
+    "Leggi. Un poco ogni giorno conta più di molto ogni tanto: questa applicazione ti terrà il segno.",
+    "Cerca altri credenti. La fede non è fatta per essere portata da soli, e raramente sopravvive se lo è.",
+    "Dillo a qualcuno. Dillo ad alta voce a una persona di cui ti fidi. Nulla lo rende più reale."
+  ],
+  "prayerIntro": "Non ci sono parole magiche. Se lo pensi davvero, dillo con le tue. Se preferisci avere parole per cominciare, queste andranno bene:",
+  "prayer": "Signore Gesù, credo che Tu sei il Figlio di Dio. Credo che sei morto sulla croce per salvarmi dal peccato e dalla morte e per riportarmi al Padre. Oggi ho udito la Tua Parola. Ti apro il mio cuore. Ti ricevo come mio Signore e Salvatore personale. Mi pento dei miei peccati e chiedo il Tuo perdono. Ricevo la vita eterna, l'abbondanza della grazia e il dono della giustizia. Tutto ciò che hai per me, lo ricevo oggi. Sono nato di nuovo. Nel nome di Gesù, amen."
+}

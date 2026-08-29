@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#ffd800"/>
+      <stop offset="55%"  stop-color="#caa444"/>
+      <stop offset="100%" stop-color="#6d5721"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#fffbe6"/>
+      <stop offset="70%"  stop-color="#ffd800"/>
+      <stop offset="100%" stop-color="#ffd800" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0%"   stop-color="#332400" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#332400" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="#000000"/>
+  <g transform="translate(256,256) scale(1.0) translate(-256,-256)">
+    <circle cx="256" cy="300" r="155" fill="url(#glow)"/>
+    <circle cx="256" cy="256" r="232" fill="none" stroke="#6d5721" stroke-width="6" opacity="0.55"/>
+    <path d="M248,66 C270,132 300,172 310,216 C324,270 312,318 286,340 C276,349 268,356 256,356 C244,356 236,349 226,340 C200,318 190,270 204,218 C214,178 240,148 248,66 Z" fill="url(#flame)"/>
+    <path d="M256,236 C266,268 280,286 278,304 C276,326 268,338 256,338 C244,338 236,326 234,304 C232,286 246,268 256,236 Z"  fill="url(#core)"/>
+  </g>
+</svg>

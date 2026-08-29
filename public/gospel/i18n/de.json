@@ -1,0 +1,27 @@
+{
+  "_lang": "de", "_name": "Deutsch", "_confidence": "high", "_verified": false,
+  "title": "Zu Christus kommen",
+  "intro": "Wenn du nie zu Christus gekommen bist, oder wenn du nicht sicher bist, ob du es hast, dann ist dies für dich. Es gibt nichts zu unterschreiben, und niemand schaut zu. Lass dir Zeit.",
+  "stages": {
+    "need": { "title": "Wo wir alle beginnen",
+      "body": "Die Schrift beginnt nicht damit, dich zu bitten, gut genug zu sein. Sie beginnt damit, klar zu sagen, dass keiner von uns es ist, und dass dies für jeden Menschen gilt, der je gelebt hat. Das ist keine Anklage. Es ist der Boden, auf dem alles andere steht, und es ist derselbe Boden für den Prediger wie für den, der ihn hört." },
+    "love": { "title": "Was Gott dagegen tat",
+      "body": "Das Herz des Evangeliums ist nicht, dass wir hinaufgriffen, sondern dass Gott herabkam. Christus wartete nicht, bis wir uns besserten. Er kam, während wir noch im Unrecht waren, und genau darauf kommt es an." },
+    "gift": { "title": "Es lässt sich nicht verdienen",
+      "body": "Jedes andere System verlangt, dass du zahlst, leistest, beweist. Dieses nicht. Es ist ein Geschenk, und ein Geschenk kann man nur empfangen. Wenn du wartest, bis du würdig bist, wirst du ewig warten und missverstanden haben, was dir angeboten wird." },
+    "respond": { "title": "Wie man antwortet",
+      "body": "Die Schrift macht es bemerkenswert einfach. Glaube, und sage es. Keine perfekt aufgesagte Formel, sondern ein echtes Umkehren des Herzens, in Worte gefasst." },
+    "assurance": { "title": "Wenn du das gebetet hast",
+      "body": "Vielleicht fühlst du sehr viel, vielleicht gar nichts. Gefühle sind nicht der Beweis, und sie werden dein Leben lang kommen und gehen. Was folgt, ist das, was die Schrift jetzt über dich sagt, ganz gleich wie sich der heutige Tag anfühlt." },
+    "next": { "title": "Was nun",
+      "body": "Dies ist ein Anfang, kein Abschluss. Vier Dinge haben Gläubige seit den frühesten Tagen der Gemeinde getragen, und keines davon ist kompliziert." }
+  },
+  "steps": [
+    "Rede mit Gott. Nicht förmlich. Täglich, in deinen eigenen Worten.",
+    "Lies. Ein wenig jeden Tag zählt mehr als viel gelegentlich — diese App merkt sich die Stelle für dich.",
+    "Finde andere Gläubige. Der Glaube ist nicht dazu gemacht, allein getragen zu werden, und er überlebt es selten.",
+    "Sag es jemandem. Sprich es laut aus, zu einem Menschen, dem du vertraust. Nichts macht es so wirklich."
+  ],
+  "prayerIntro": "Es gibt keine Zauberworte. Wenn du es ernst meinst, sage es mit deinen eigenen. Wenn du lieber Worte zum Anfangen hast, genügen diese:",
+  "prayer": "Herr Jesus, ich glaube, dass Du der Sohn Gottes bist. Ich glaube, dass Du am Kreuz gestorben bist, um mich von Sünde und Tod zu erretten und mich zum Vater zurückzubringen. Heute habe ich Dein Wort gehört. Ich öffne Dir mein Herz. Ich nehme Dich an als meinen Herrn und persönlichen Erlöser. Ich bereue meine Sünden und bitte um Deine Vergebung. Ich empfange ewiges Leben, die Fülle der Gnade und die Gabe der Gerechtigkeit. Alles, was Du für mich hast, empfange ich heute. Ich bin von neuem geboren. In Jesu Namen, Amen."
+}

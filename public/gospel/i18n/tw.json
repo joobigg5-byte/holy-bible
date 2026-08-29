@@ -1,0 +1,28 @@
+{
+  "_lang": "tw", "_name": "Twi", "_confidence": "low", "_verified": false,
+  "_warning": "Drafted without native fluency. MUST be checked by a Twi speaker before it is shown to anyone.",
+  "title": "Baa Kristo Nkyɛn",
+  "intro": "Sɛ wonnkɔɔ Kristo nkyɛn da, anaa wunnim sɛ woakɔ anaa, yei wɔ hɔ ma wo. Biribiara nni hɔ a wobɛhyɛ ase, na obiara nrehwɛ wo. Fa wo berɛ.",
+  "stages": {
+    "need": { "title": "Baabi a yɛn nyinaa fi ase",
+      "body": "Kyerɛwsɛm no mfi ase sɛ ɛbɛbisa wo sɛ yɛ papa a ɛdɔɔso. Ɛfi ase pefee sɛ yɛn mu biara nyɛ saa, na yei yɛ nokware wɔ onipa biara a watena ase da ho. Ɛnyɛ soboɔbɔ. Ɛyɛ fapem a wɔde biribiara si so, na ɛyɛ fapem korɔ no ara ma ɔsɛnkafo ne nea ɔretie no." },
+    "love": { "title": "Nea Onyankopɔn yɛe",
+      "body": "Asɛmpa no koma nyɛ sɛ yɛn na yɛforoo kɔɔ soro, na mmom sɛ Onyankopɔn na osian bae. Kristo antwɛn sɛ yɛbɛyɛ papa ansa. Ɔbae bere a na yɛda so ara ayera, na saa bere no ne nea ɛho hia." },
+    "gift": { "title": "Wontumi nnya no",
+      "body": "Nhyehyɛe foforo biara ka kyerɛ wo sɛ tua ka, yɛ adwuma, kyerɛ. Yei deɛ, dabi. Ɛyɛ akyɛdeɛ, na akyɛdeɛ deɛ, gye nko ara na wobɛtumi agye. Sɛ wotwɛn kosi sɛ wobɛfata a, wobɛtwɛn daa, na wonte nea wɔde rema wo no ase." },
+    "respond": { "title": "Sɛnea wubegye so",
+      "body": "Kyerɛwsɛm no ma ɛyɛ mmerɛw yiye. Gye di, na ka. Ɛnyɛ nsɛm bi a wobɛka pɛpɛɛpɛ, na mmom koma ase nnannan ankasa a wode ayɛ nsɛm." },
+    "assurance": { "title": "Sɛ wobɔɔ saa mpae no",
+      "body": "Ebia wobɛte nka pii, anaa worente hwee. Nkate nyɛ adanse, na ɛbɛba na akɔ wo nkwa nna nyinaa. Nea edi so yɛ nea Kyerɛwsɛm ka sɛ ɛyɛ nokware wɔ wo ho seesei, sɛnea ɛnnɛ te biara." },
+    "next": { "title": "Afei deɛ",
+      "body": "Yei yɛ mfiase, ɛnyɛ awiei. Nneɛma anan na akura agyidifo mu efi asafo no mfiase nna no, na emu biara nyɛ den." }
+  },
+  "steps": [
+    "Ka kyerɛ Onyankopɔn. Ɛnnyɛ ɔkwan pa so. Da biara, wɔ w'ankasa nsɛm mu.",
+    "Kenkan. Kakraa bi da biara ho hia sen pii ɛtɔ da — saa app yi bɛkora baabi a wuduruu so ama wo.",
+    "Hwehwɛ agyidifo afoforo. Wɔammɔ gyidi sɛ wo nko ara na wobɛsoa, na ɛtaa nyɛ yiye sɛ wo nko ara wosoa.",
+    "Ka kyerɛ obi. Ka no den kyerɛ onipa baako a wowɔ ne mu ahotoso. Biribiara mma ɛnyɛ nokware saa."
+  ],
+  "prayerIntro": "Nsɛm a tumi wɔ mu nni hɔ. Sɛ efi wo koma mu a, ka wɔ w'ankasa nsɛm mu. Sɛ wopɛ nsɛm bi de fi ase a, yeinom bɛsɔ ani:",
+  "prayer": "Awurade Yesu, migye di sɛ wone Onyankopɔn Ba. Migye di sɛ wuwuu asɛnnua no so sɛ wobɛgye me afi bɔne ne owu mu, na wode me asan akɔ Agya no nkyɛn. Ɛnnɛ mate w'Asɛm. Mibue me koma ma wo. Migye wo sɛ m'Awurade ne m'ankasa Agyenkwa. Misakra m'adwene fi me bɔne ho na misrɛ wo bɔnefakyɛ. Migye daa nkwa, adom bebree, ne trenee akyɛdeɛ. Nea wowɔ ma me nyinaa, migye no ɛnnɛ. Wɔawo me foforo. Wɔ Yesu din mu, Amen."
+}

@@ -1,0 +1,77 @@
+[
+ {
+  "name": "1 Esdras",
+  "slug": "1_esdras",
+  "chapters": 9
+ },
+ {
+  "name": "1 Maccabees",
+  "slug": "1_maccabees",
+  "chapters": 16
+ },
+ {
+  "name": "2 Esdras",
+  "slug": "2_esdras",
+  "chapters": 16
+ },
+ {
+  "name": "2 Maccabees",
+  "slug": "2_maccabees",
+  "chapters": 15
+ },
+ {
+  "name": "Baruch",
+  "slug": "baruch",
+  "chapters": 5
+ },
+ {
+  "name": "Bel and the Dragon",
+  "slug": "bel_and_the_dragon",
+  "chapters": 1
+ },
+ {
+  "name": "Ecclesiasticus",
+  "slug": "ecclesiasticus",
+  "chapters": 51
+ },
+ {
+  "name": "Additions to Esther",
+  "slug": "additions_to_esther",
+  "chapters": 10
+ },
+ {
+  "name": "Judith",
+  "slug": "judith",
+  "chapters": 16
+ },
+ {
+  "name": "Letter of Jeremiah",
+  "slug": "letter_of_jeremiah",
+  "chapters": 1
+ },
+ {
+  "name": "Prayer of Azariah",
+  "slug": "prayer_of_azariah",
+  "chapters": 1
+ },
+ {
+  "name": "Prayer of Manasseh",
+  "slug": "prayer_of_manasseh",
+  "chapters": 1
+ },
+ {
+  "name": "Susanna",
+  "slug": "susanna",
+  "chapters": 1
+ },
+ {
+  "name": "Tobit",
+  "slug": "tobit",
+  "chapters": 14
+ },
+ {
+  "name": "Wisdom of Solomon",
+  "slug": "wisdom_of_solomon",
+  "chapters": 19
+ }
+]

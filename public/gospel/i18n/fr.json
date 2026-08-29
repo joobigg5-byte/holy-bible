@@ -1,0 +1,27 @@
+{
+  "_lang": "fr", "_name": "Français", "_confidence": "high", "_verified": false,
+  "title": "Venir à Christ",
+  "intro": "Si tu n'es jamais venu à Christ, ou si tu n'es pas sûr de l'avoir fait, ceci est pour toi. Il n'y a rien à signer et personne ne te regarde. Prends ton temps.",
+  "stages": {
+    "need": { "title": "Là où nous commençons tous",
+      "body": "L'Écriture ne commence pas en te demandant d'être assez bon. Elle commence en disant clairement qu'aucun de nous ne l'est, et que cela vaut pour toute personne ayant jamais vécu. Ce n'est pas une accusation. C'est le sol sur lequel tout le reste est bâti, et c'est le même sol pour le prédicateur que pour celui qui l'écoute." },
+    "love": { "title": "Ce que Dieu a fait",
+      "body": "Le cœur de l'Évangile n'est pas que nous soyons montés, mais que Dieu soit descendu. Christ n'a pas attendu que nous nous améliorions d'abord. Il est venu alors que nous étions encore dans l'erreur, et ce moment est tout le propos." },
+    "gift": { "title": "Cela ne se mérite pas",
+      "body": "Tout autre système te demande de payer, de performer, de prouver. Celui-ci non. C'est un don, et un don ne peut qu'être reçu. Si tu attends d'être digne, tu attendras toujours, et tu auras mal compris ce qui t'est offert." },
+    "respond": { "title": "Comment répondre",
+      "body": "L'Écriture rend cela remarquablement simple. Crois, et dis-le. Non pas une formule récitée parfaitement, mais un vrai retournement du cœur mis en paroles." },
+    "assurance": { "title": "Si tu as prié cela",
+      "body": "Tu ressentiras peut-être beaucoup, ou peut-être rien du tout. Les sentiments ne sont pas la preuve, et ils iront et viendront toute ta vie. Ce qui suit est ce que l'Écriture déclare désormais vrai de toi, quoi que tu ressentes aujourd'hui." },
+    "next": { "title": "Et maintenant",
+      "body": "Ceci est un commencement, non une fin. Quatre choses ont soutenu les croyants depuis les premiers jours de l'Église, et aucune n'est compliquée." }
+  },
+  "steps": [
+    "Parle à Dieu. Sans formalité. Chaque jour, avec tes propres mots.",
+    "Lis. Un peu chaque jour compte plus que beaucoup de temps en temps — cette application gardera ta place.",
+    "Trouve d'autres croyants. La foi n'est pas faite pour être portée seul, et elle y survit rarement.",
+    "Dis-le à quelqu'un. Dis-le à voix haute à une personne de confiance. Rien ne le rend plus réel."
+  ],
+  "prayerIntro": "Il n'y a pas de formule magique. Si tu le penses vraiment, dis-le avec tes mots. Si tu préfères des paroles pour commencer, celles-ci feront l'affaire :",
+  "prayer": "Seigneur Jésus, je crois que Tu es le Fils de Dieu. Je crois que Tu es mort sur la croix pour me délivrer du péché et de la mort, et pour me ramener au Père. Aujourd'hui, j'ai entendu Ta Parole. Je T'ouvre mon cœur. Je Te reçois comme mon Seigneur et Sauveur personnel. Je me repens de mes péchés et je demande Ton pardon. Je reçois la vie éternelle, l'abondance de la grâce et le don de la justice. Tout ce que Tu as pour moi, je le reçois aujourd'hui. Je suis né de nouveau. Au nom de Jésus, amen."
+}
