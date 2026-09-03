@@ -32,14 +32,14 @@ export function LanguageSelector({ value, onChange }: Props) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 bg-sacred-black/70 z-40"
+              className="fixed inset-0 bg-sacred-black/70 z-overlay"
             />
             <motion.div
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-sacred-black border-t border-gold-dark rounded-t-2xl px-6 pt-4 pb-8"
+              className="fixed bottom-0 left-0 right-0 z-sheet bg-sacred-black border-t border-gold-dark rounded-t-2xl px-6 pt-4 pb-[calc(2rem+env(safe-area-inset-bottom,0px))]"
             >
               <div className="mx-auto w-10 h-1 rounded-full bg-gold-muted/30 mb-3" />
               <div className="flex items-center justify-between mb-3">
@@ -55,8 +55,10 @@ export function LanguageSelector({ value, onChange }: Props) {
                 </button>
               </div>
 
-              {/* Scrollable list – always shows all 15 languages */}
-              <ul className="divide-y divide-gold-dark/30 overflow-y-auto max-h-72">
+              {/* All seventeen translations. Height is capped against the
+                  viewport rather than a fixed value, and the sheet clears the
+                  phone's home bar, so the last entry is always reachable. */}
+              <ul className="divide-y divide-gold-dark/30 overflow-y-auto max-h-[min(60vh,26rem)] overscroll-contain">
                 {LANGUAGES.map(lang => {
                   const active = lang.code === value;
                   return (

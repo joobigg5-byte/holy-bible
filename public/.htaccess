@@ -1,0 +1,34 @@
+# Single-page app routing for Apache (cPanel, most shared hosting).
+# Without this, opening /read directly returns 404 because no such folder exists.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Leave real files and folders alone
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else is handled by the app
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Bible text and hashed assets never change once published
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/json "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+</IfModule>
+
+# index.html must never be cached, or readers get stuck on an old build
+<IfModule mod_headers.c>
+  <FilesMatch "index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "sw\.js$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+AddType application/manifest+json .webmanifest

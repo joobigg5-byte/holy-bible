@@ -165,9 +165,12 @@ export function chunkText(text: string, lang: string): string[] {
  * ---------------------------------------------------------------------- */
 
 let keepAlive: number | null = null;
+let watchdog: number | null = null;
 
 export function startKeepAlive() {
   if (!supported() || keepAlive !== null) return;
+  // The pause/resume nudge is a Chrome desktop fix and actively breaks audio on
+  // some Android builds, so it stays desktop-only.
   const isChromeDesktop =
     /Chrome/.test(navigator.userAgent) && !/Mobile|Android/.test(navigator.userAgent);
   if (!isChromeDesktop) return;
@@ -180,11 +183,47 @@ export function startKeepAlive() {
   }, 10000);
 }
 
+/**
+ * Watchdog for mobile.
+ *
+ * On Android the utterance queue silently dies after a handful of items and
+ * `onend` never fires, so playback stopped a few verses in with no error. This
+ * checks whether the engine has gone idle while we still expect it to be
+ * speaking, and nudges the next chunk along.
+ *
+ * @param stillWanted true while playback should continue
+ * @param isIdleTooLong called when the engine has gone quiet unexpectedly
+ */
+export function startWatchdog(stillWanted: () => boolean, onStall: () => void) {
+  stopWatchdog();
+  if (!supported()) return;
+  let quietTicks = 0;
+  watchdog = window.setInterval(() => {
+    if (!stillWanted()) { stopWatchdog(); return; }
+    const s = window.speechSynthesis;
+    if (s.speaking || s.pending || s.paused) { quietTicks = 0; return; }
+    // Two consecutive quiet ticks (~1.6s) means the queue really has stalled
+    quietTicks += 1;
+    if (quietTicks >= 2) {
+      quietTicks = 0;
+      onStall();
+    }
+  }, 800);
+}
+
+export function stopWatchdog() {
+  if (watchdog !== null) {
+    window.clearInterval(watchdog);
+    watchdog = null;
+  }
+}
+
 export function stopKeepAlive() {
   if (keepAlive !== null) {
     window.clearInterval(keepAlive);
     keepAlive = null;
   }
+  stopWatchdog();
 }
 
 /* -------------------------------------------------------------------------

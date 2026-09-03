@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   X, ChevronLeft, Search as SearchIcon, BookMarked, MapPin, Music,
   Sunrise, ScrollText, FileText, Loader2, ExternalLink,
-  Heart, Quote as QuoteIcon, Download, Upload,
+  Heart, Quote as QuoteIcon, Download, Upload, Play, Square, Projector, ListTree, Type,
+  TrendingUp, HandHeart, CalendarRange, Check, Trash2, RotateCcw,
 } from 'lucide-react';
 
 import { searchBible, parseReference, type SearchResult } from '@/services/bibleSearch';
@@ -12,6 +13,8 @@ import {
   certaintyMeaning, type DictionaryEntry, type Place,
 } from '@/services/reference';
 import { getHymns, searchHymns, getHymnOfDay, hymnToSpeech, type Hymn } from '@/services/hymns';
+import { getTune, playTune, stopTune, partsAvailable, PART_ORDER,
+  type Tune, type PartName } from '@/services/tunePlayer';
 import { getDevotional, type Devotional } from '@/services/commentary';
 import { EXTRA_COLLECTIONS, loadCollection, type ExtraWork } from '@/data/extraCanon';
 import { getWatchPeriod } from '@/data/lectionary';
@@ -22,9 +25,17 @@ import { loadTeachings, getQuotes, getOwnQuotes, saveOwnQuote,
   type Quote, type Theme } from '@/services/teachings';
 import { exportJson, exportMarkdown, restoreBackup } from '@/services/userData';
 import { getDayInfo } from '@/services/churchYear';
+import { HEBREW, GREEK } from '@/data/alphabets';
+import { searchTopics, getTopic, resolveEntry, SUGGESTED,
+  type TopicSummary, type Topic, type TopicVerse } from '@/services/topical';
+import { getSummary, bookProgress, recentDays, getLog } from '@/services/progress';
+import { getPrayers, addPrayer, markAnswered, reopenPrayer, deletePrayer,
+  daysCarried, type Prayer } from '@/services/prayers';
+import { PLANS, getPlanState, startPlan, advancePlan, stopPlan,
+  formatReading, type PlanState } from '@/services/readingPlans';
 import type { LanguageCode } from '@/data/languages';
 
-type View = 'menu' | 'search' | 'dictionary' | 'places' | 'hymns' | 'devotional' | 'extra' | 'gospel' | 'teachings' | 'backup';
+type View = 'menu' | 'project' | 'topical' | 'alphabet' | 'search' | 'dictionary' | 'places' | 'hymns' | 'devotional' | 'extra' | 'gospel' | 'teachings' | 'backup' | 'progress' | 'prayers' | 'plans';
 
 interface Props {
   isOpen: boolean;
@@ -35,13 +46,19 @@ interface Props {
 
 const SHELVES: Array<{ id: View; icon: typeof SearchIcon; title: string; note: string }> = [
   { id: 'search',     icon: SearchIcon,  title: 'Search the Scriptures', note: 'Every verse, by word or reference' },
+  { id: 'topical',    icon: ListTree,    title: 'Topical Bible',         note: "Nave's · 5,320 subjects, every passage" },
   { id: 'dictionary', icon: BookMarked,  title: 'Bible Dictionary',      note: "Easton's and Smith's · 5,742 entries" },
+  { id: 'alphabet',   icon: Type,        title: 'Hebrew and Greek',      note: 'The letters, and where they came from' },
   { id: 'places',     icon: MapPin,      title: 'Places, Then and Now',  note: 'Where the cities of scripture stand today' },
-  { id: 'hymns',      icon: Music,       title: 'Hymns',                 note: '317 hymns of the church' },
+  { id: 'hymns',      icon: Music,       title: 'Hymns',                 note: '567 hymns · 279 in four parts' },
   { id: 'devotional', icon: Sunrise,     title: 'Morning and Evening',   note: 'Spurgeon, for every day of the year' },
   { id: 'extra',      icon: ScrollText,  title: 'Other Writings',        note: 'The Apocrypha and the ancient books' },
   { id: 'teachings',  icon: QuoteIcon,       title: 'Wisdom and Teaching',   note: 'From the preachers of the church' },
   { id: 'gospel',     icon: Heart,       title: 'Coming to Christ',      note: 'If you have never taken this step' },
+  { id: 'project',    icon: Projector,   title: 'Project a Verse',       note: 'For preaching — follows what is spoken' },
+  { id: 'plans',      icon: CalendarRange, title: 'Reading Plans',       note: 'The whole Bible in a year, and others' },
+  { id: 'progress',   icon: TrendingUp,  title: 'Your Progress',         note: 'What you have read, and when' },
+  { id: 'prayers',    icon: HandHeart,   title: 'Prayer List',           note: 'Requests, and answers when they come' },
   { id: 'backup',     icon: Download,    title: 'Save Your Work',        note: 'Export your notes and highlights' },
 ];
 
@@ -281,7 +298,19 @@ function HymnsView({ language }: { language: LanguageCode }) {
   const [rows, setRows] = useState<Hymn[]>([]);
   const [open, setOpen] = useState<Hymn | null>(null);
   const [today, setToday] = useState<Hymn | null>(null);
+  const [tune, setTune] = useState<Tune | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [voices, setVoices] = useState<PartName[]>([...PART_ORDER]);
   const { isSpeaking, speak, stop } = useVerseSpeech(language);
+
+  // Load the melody when a hymn is opened, and stop any tune on the way out
+  useEffect(() => {
+    setTune(null);
+    setPlaying(false);
+    stopTune();
+    if (open?.tune) getTune(open.tune).then(setTune);
+    return () => stopTune();
+  }, [open?.slug, open?.tune]);
 
   useEffect(() => { getHymns().then(setRows); getHymnOfDay().then(setToday); }, []);
   useEffect(() => {
@@ -299,14 +328,65 @@ function HymnsView({ language }: { language: LanguageCode }) {
           >
             <ChevronLeft size={14} /> Back
           </button>
-          <button
-            onClick={() => (isSpeaking ? stop() : speak(hymnToSpeech(open)))}
-            className="text-gold-muted/60 hover:text-gold-bright text-xs transition-colors"
-          >
-            {isSpeaking ? 'Stop' : 'Read aloud'}
-          </button>
+          <div className="flex items-center gap-4">
+            {tune && (
+              <button
+                onClick={() => {
+                  if (playing) { stopTune(); setPlaying(false); return; }
+                  stop();
+                  setPlaying(true);
+                  void playTune(tune, { parts: voices, onEnd: () => setPlaying(false) });
+                }}
+                className="flex items-center gap-1.5 text-xs transition-colors
+                           text-gold-muted/60 hover:text-gold-bright"
+              >
+                {playing ? <Square size={12} fill="currentColor" /> : <Play size={12} />}
+                {playing ? 'Stop' : 'Play tune'}
+              </button>
+            )}
+            <button
+              onClick={() => { stopTune(); setPlaying(false); isSpeaking ? stop() : speak(hymnToSpeech(open)); }}
+              className="text-gold-muted/60 hover:text-gold-bright text-xs transition-colors"
+            >
+              {isSpeaking ? 'Stop' : 'Read aloud'}
+            </button>
+          </div>
         </div>
-        <h3 className="font-book-name text-gold-bright text-lg mb-6">{open.title}</h3>
+        <h3 className="font-book-name text-gold-bright text-lg mb-1">{open.title}</h3>
+        {tune?.tune && (
+          <p className="text-gold-muted/40 text-[11px] mb-3">Tune: {tune.tune}</p>
+        )}
+
+        {tune && partsAvailable(tune).length > 1 && (
+          <div className="flex flex-wrap gap-2 mb-5">
+            {partsAvailable(tune).map((part) => {
+              const on = voices.includes(part);
+              return (
+                <button
+                  key={part}
+                  onClick={() => {
+                    const next = on ? voices.filter((v) => v !== part) : [...voices, part];
+                    if (!next.length) return;          // never silence everything
+                    setVoices(next);
+                    if (playing) {
+                      stopTune();
+                      void playTune(tune, { parts: next, onEnd: () => setPlaying(false) });
+                    }
+                  }}
+                  className={`px-2.5 py-1 rounded border text-[10px] tracking-wider uppercase transition-colors ${
+                    on
+                      ? 'border-gold-bright text-gold-bright'
+                      : 'border-gold-dark/40 text-gold-muted/40 hover:text-gold-muted'
+                  }`}
+                >
+                  {part}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {(!tune?.tune && !tune) && <div className="mb-5" />}
         <div className="space-y-5">
           {open.verses.map((verse, i) => (
             <div key={i}>
@@ -347,8 +427,11 @@ function HymnsView({ language }: { language: LanguageCode }) {
             onClick={() => setOpen(h)}
             className="block w-full text-left px-3 py-2.5 border-b border-gold-dark/30 hover:text-gold-bright transition-colors"
           >
-            <p className="text-gold-metallic text-sm">{h.title}</p>
-            <p className="text-gold-muted/40 text-[11px] mt-0.5">{h.verses[0]?.[0]}</p>
+            <p className="text-gold-metallic text-sm flex items-center gap-2">
+              {h.title}
+              {h.tune && <Play size={9} className="text-gold-muted/40 shrink-0" />}
+            </p>
+            <p className="text-gold-muted/40 text-[11px] mt-0.5 line-clamp-1">{h.verses[0]?.[0]}</p>
           </button>
         ))}
       </div>
@@ -724,6 +807,585 @@ function BackupView() {
   );
 }
 
+
+/* ── progress ──────────────────────────────────────────────────────────── */
+
+function ProgressView() {
+  const summary = getSummary();
+  const books = bookProgress();
+  const days = recentDays(84);
+  const log = getLog().slice(0, 30);
+
+  const Stat = ({ n, label }: { n: string | number; label: string }) => (
+    <div className="text-center">
+      <p className="text-gold-bright text-2xl font-book-name">{n}</p>
+      <p className="text-gold-muted/40 text-[10px] tracking-wider uppercase mt-1">{label}</p>
+    </div>
+  );
+
+  return (
+    <>
+      <div className="grid grid-cols-3 gap-4 mb-8">
+        <Stat n={summary.streak} label="Day streak" />
+        <Stat n={summary.uniqueChapters} label="Chapters" />
+        <Stat n={`${summary.percentOfBible}%`} label="Of the Bible" />
+      </div>
+
+      <div className="mb-8">
+        <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-3">
+          Last twelve weeks
+        </p>
+        <div className="grid grid-cols-[repeat(28,1fr)] gap-[3px]">
+          {days.map((d) => (
+            <span
+              key={d.date}
+              title={`${d.date} · ${d.count} chapter${d.count === 1 ? '' : 's'}`}
+              className="aspect-square rounded-[1px]"
+              style={{
+                background: d.count === 0
+                  ? 'hsl(var(--gold-dark))'
+                  : `hsl(var(--gold-bright) / ${Math.min(1, 0.3 + d.count * 0.22)})`,
+              }}
+            />
+          ))}
+        </div>
+        <p className="text-gold-muted/40 text-[11px] mt-3">
+          {summary.daysRead} days read · {summary.thisWeek} chapters this week
+        </p>
+      </div>
+
+      {summary.booksFinished.length > 0 && (
+        <div className="mb-8">
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-2">
+            Books finished
+          </p>
+          <p className="text-gold-metallic text-sm leading-relaxed">
+            {summary.booksFinished.join(' · ')}
+          </p>
+        </div>
+      )}
+
+      {books.length > 0 && (
+        <div className="mb-8">
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-3">
+            By book
+          </p>
+          <div className="space-y-2.5">
+            {books.slice(0, 20).map((b) => (
+              <div key={b.book}>
+                <div className="flex justify-between text-[11px] mb-1">
+                  <span className="text-gold-metallic">{b.book}</span>
+                  <span className="text-gold-muted/40">{b.read} / {b.total}</span>
+                </div>
+                <div className="h-[3px] bg-gold-dark rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gold-bright/70"
+                    style={{ width: `${Math.min(100, (b.read / b.total) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {log.length > 0 && (
+        <div>
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-3">
+            Recently read
+          </p>
+          <div className="space-y-1.5">
+            {log.map((e, i) => (
+              <div key={i} className="flex justify-between text-[11px]">
+                <span className="text-gold-metallic">
+                  {e.book === 'Psalms' ? 'Psalm' : e.book} {e.chapter}
+                </span>
+                <span className="text-gold-muted/40">{e.date}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!log.length && <Empty>Nothing recorded yet. Open a chapter and it will appear here.</Empty>}
+    </>
+  );
+}
+
+/* ── prayers ───────────────────────────────────────────────────────────── */
+
+function PrayersView() {
+  const [list, setList] = useState<Prayer[]>(getPrayers);
+  const [text, setText] = useState('');
+  const [about, setAbout] = useState('');
+  const [adding, setAdding] = useState(false);
+  const [answering, setAnswering] = useState<string | null>(null);
+  const [answerNote, setAnswerNote] = useState('');
+
+  const open = list.filter((p) => !p.answeredAt);
+  const answered = list.filter((p) => p.answeredAt);
+
+  return (
+    <>
+      <button
+        onClick={() => setAdding(!adding)}
+        className="w-full text-left px-4 py-3 mb-6 border border-gold-dark rounded
+                   text-gold-metallic text-sm hover:border-gold-muted transition-colors"
+      >
+        {adding ? 'Cancel' : 'Add a request'}
+      </button>
+
+      {adding && (
+        <div className="space-y-3 mb-8">
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="What are you asking for?"
+            rows={3}
+            autoFocus
+            className="w-full bg-transparent border border-gold-dark rounded px-3 py-2 text-sm
+                       text-gold-metallic placeholder:text-gold-muted/30 focus:outline-none
+                       focus:border-gold-muted resize-none"
+          />
+          <input
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+            placeholder="Who or what it concerns (optional)"
+            className="w-full bg-transparent border border-gold-dark rounded px-3 py-2 text-sm
+                       text-gold-metallic placeholder:text-gold-muted/30 focus:outline-none
+                       focus:border-gold-muted"
+          />
+          <button
+            onClick={() => {
+              if (!text.trim()) return;
+              setList(addPrayer(text, about));
+              setText(''); setAbout(''); setAdding(false);
+            }}
+            className="text-xs text-gold-muted hover:text-gold-bright border border-gold-dark
+                       rounded px-4 py-2 transition-colors"
+          >
+            Save
+          </button>
+          <p className="text-gold-muted/40 text-[11px]">Kept on this device only.</p>
+        </div>
+      )}
+
+      {open.length > 0 && (
+        <div className="mb-10">
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-4">
+            Carrying · {open.length}
+          </p>
+          <div className="space-y-5">
+            {open.map((p) => (
+              <div key={p.id} className="border-b border-gold-dark/30 pb-5">
+                <p className="text-gold-metallic text-sm leading-relaxed">{p.text}</p>
+                <p className="text-gold-muted/40 text-[11px] mt-1.5">
+                  {p.about && <span>{p.about} · </span>}
+                  {daysCarried(p) === 0 ? 'today' : `${daysCarried(p)} days`}
+                </p>
+
+                {answering === p.id ? (
+                  <div className="mt-3 space-y-2">
+                    <input
+                      value={answerNote}
+                      onChange={(e) => setAnswerNote(e.target.value)}
+                      placeholder="What happened? (optional)"
+                      autoFocus
+                      className="w-full bg-transparent border border-gold-dark rounded px-3 py-2
+                                 text-sm text-gold-metallic placeholder:text-gold-muted/30
+                                 focus:outline-none focus:border-gold-muted"
+                    />
+                    <button
+                      onClick={() => {
+                        setList(markAnswered(p.id, answerNote));
+                        setAnswering(null); setAnswerNote('');
+                      }}
+                      className="text-xs text-gold-bright"
+                    >
+                      Mark answered
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-4 mt-3">
+                    <button
+                      onClick={() => setAnswering(p.id)}
+                      className="flex items-center gap-1 text-[11px] text-gold-muted/60 hover:text-gold-bright transition-colors"
+                    >
+                      <Check size={12} /> Answered
+                    </button>
+                    <button
+                      onClick={() => setList(deletePrayer(p.id))}
+                      className="flex items-center gap-1 text-[11px] text-gold-muted/40 hover:text-gold-bright transition-colors"
+                    >
+                      <Trash2 size={12} /> Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {answered.length > 0 && (
+        <div>
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-4">
+            Answered · {answered.length}
+          </p>
+          <div className="space-y-5">
+            {answered.map((p) => (
+              <div key={p.id} className="border-b border-gold-dark/20 pb-5 opacity-75">
+                <p className="text-gold-metallic text-sm leading-relaxed">{p.text}</p>
+                {p.answerNote && (
+                  <p className="text-gold-bright text-sm italic mt-2 leading-relaxed">
+                    {p.answerNote}
+                  </p>
+                )}
+                <div className="flex items-center gap-4 mt-2">
+                  <span className="text-gold-muted/40 text-[11px]">
+                    carried {daysCarried(p)} days
+                  </span>
+                  <button
+                    onClick={() => setList(reopenPrayer(p.id))}
+                    className="flex items-center gap-1 text-[11px] text-gold-muted/40 hover:text-gold-bright transition-colors"
+                  >
+                    <RotateCcw size={11} /> Reopen
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!list.length && !adding && (
+        <Empty>Nothing here yet. What are you carrying today?</Empty>
+      )}
+    </>
+  );
+}
+
+/* ── reading plans ─────────────────────────────────────────────────────── */
+
+function PlansView({ onOpenPassage }: { onOpenPassage?: (b: string, c: number) => void }) {
+  const [state, setState] = useState<PlanState | null>(getPlanState);
+  const plan = state ? PLANS.find((p) => p.id === state.planId) : null;
+
+  if (state && plan) {
+    const readings = plan.readingsFor(state.day);
+    const pct = Math.round((state.day / plan.days) * 100);
+    return (
+      <>
+        <h4 className="text-gold-bright text-sm mb-1">{plan.name}</h4>
+        <p className="text-gold-muted/50 text-[11px] mb-5">
+          Day {state.day} of {plan.days} · {pct}%
+        </p>
+
+        <div className="h-[3px] bg-gold-dark rounded-full overflow-hidden mb-8">
+          <div className="h-full bg-gold-bright/70" style={{ width: `${pct}%` }} />
+        </div>
+
+        <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-3">
+          Today's reading
+        </p>
+        <div className="space-y-2 mb-8">
+          {readings.map((r, i) => (
+            <button
+              key={i}
+              onClick={() => onOpenPassage?.(r.book, r.fromChapter)}
+              className="block w-full text-left px-4 py-3 border border-gold-dark rounded
+                         text-gold-metallic text-sm hover:border-gold-muted hover:text-gold-bright
+                         transition-colors"
+            >
+              {formatReading(r)}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex gap-4">
+          <button
+            onClick={() => setState(advancePlan())}
+            className="text-xs text-gold-muted hover:text-gold-bright border border-gold-dark
+                       rounded px-4 py-2 transition-colors"
+          >
+            Mark done, next day
+          </button>
+          <button
+            onClick={() => { stopPlan(); setState(null); }}
+            className="text-xs text-gold-muted/40 hover:text-gold-bright transition-colors"
+          >
+            Leave this plan
+          </button>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <p className="text-gold-muted/70 text-sm leading-relaxed mb-6">
+        A plan gives you a set reading each day. You can leave or restart at any time,
+        and nothing is lost if you miss a day.
+      </p>
+      <div className="space-y-2">
+        {PLANS.map((p) => (
+          <button
+            key={p.id}
+            onClick={() => setState(startPlan(p.id))}
+            className="block w-full text-left px-4 py-3 border border-gold-dark rounded
+                       hover:border-gold-muted transition-colors"
+          >
+            <span className="block text-gold-metallic text-sm">{p.name}</span>
+            <span className="block text-gold-muted/40 text-[11px] mt-0.5">{p.note}</span>
+          </button>
+        ))}
+      </div>
+    </>
+  );
+}
+
+
+/* ── topical bible ─────────────────────────────────────────────────────── */
+
+function TopicalView({ language, onOpenPassage }: {
+  language: LanguageCode; onOpenPassage?: (b: string, c: number) => void;
+}) {
+  const [q, setQ] = useState('');
+  const [hits, setHits] = useState<TopicSummary[]>([]);
+  const [open, setOpen] = useState<Topic | null>(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
+  const [verses, setVerses] = useState<TopicVerse[]>([]);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (q.trim().length < 2) { setHits([]); return; }
+    const t = setTimeout(() => { void searchTopics(q, 40).then(setHits); }, 200);
+    return () => clearTimeout(t);
+  }, [q]);
+
+  const openEntry = async (i: number) => {
+    if (expanded === i) { setExpanded(null); setVerses([]); return; }
+    setExpanded(i);
+    setBusy(true);
+    setVerses(await resolveEntry(open!.entries[i], language, 12));
+    setBusy(false);
+  };
+
+  if (open) {
+    return (
+      <>
+        <button
+          onClick={() => { setOpen(null); setExpanded(null); setVerses([]); }}
+          className="flex items-center gap-1 text-gold-muted/60 hover:text-gold-bright text-xs mb-5 transition-colors"
+        >
+          <ChevronLeft size={14} /> Back
+        </button>
+
+        <h3 className="font-book-name text-gold-bright text-lg mb-1">{open.name}</h3>
+        <p className="text-gold-muted/40 text-[11px] mb-5">
+          {open.entries.length} heading{open.entries.length === 1 ? '' : 's'}
+          {open.seeAlso.length > 0 && ` · see also ${open.seeAlso.join(', ')}`}
+        </p>
+
+        <div className="space-y-1">
+          {open.entries.map((e, i) => (
+            <div key={i} className="border-b border-gold-dark/30">
+              <button
+                onClick={() => e.r.length && openEntry(i)}
+                className={`w-full text-left py-2.5 text-sm transition-colors ${
+                  e.r.length
+                    ? expanded === i ? 'text-gold-bright' : 'text-gold-metallic hover:text-gold-bright'
+                    : 'text-gold-muted/40'
+                }`}
+              >
+                {e.h || 'General'}
+                {e.r.length > 0 && (
+                  <span className="text-gold-muted/40 text-[11px] ml-2">{e.r.length}</span>
+                )}
+              </button>
+
+              {expanded === i && (
+                <div className="pb-4 space-y-3">
+                  {busy && <Spinner />}
+                  {!busy && verses.map((v, j) => (
+                    <button
+                      key={j}
+                      onClick={() => onOpenPassage?.(v.book, v.chapter)}
+                      className="block w-full text-left group"
+                    >
+                      <p className="text-gold-muted/60 text-[11px] group-hover:text-gold-bright transition-colors">
+                        {v.reference}
+                      </p>
+                      <p className="text-gold-metallic text-sm leading-relaxed">{v.text}</p>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p className="text-gold-muted/30 text-[10px] mt-8">
+          Nave's Topical Bible, 1897. Public domain.
+        </p>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Field value={q} onChange={setQ} placeholder="A subject — faith, money, the cross…" />
+
+      {!q && (
+        <>
+          <p className="text-gold-muted/50 text-[10px] tracking-widest uppercase mb-3">
+            Often looked up
+          </p>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {SUGGESTED.map((name) => (
+              <button
+                key={name}
+                onClick={() => setQ(name)}
+                className="px-3 py-1.5 rounded border border-gold-dark/40 text-gold-muted
+                           hover:text-gold-bright hover:border-gold-muted text-xs transition-colors"
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+          <p className="text-gold-muted/40 text-xs leading-relaxed">
+            5,320 subjects. Searching by topic finds passages that never use the
+            word — "the second coming" turns up verses about His return however
+            they are phrased.
+          </p>
+        </>
+      )}
+
+      <div className="space-y-1">
+        {hits.map((t) => (
+          <button
+            key={t.s}
+            onClick={async () => { setOpen(await getTopic(t.s)); setExpanded(null); }}
+            className="block w-full text-left px-3 py-2.5 border-b border-gold-dark/30
+                       hover:text-gold-bright transition-colors"
+          >
+            <span className="text-gold-metallic text-sm">{t.n}</span>
+            <span className="text-gold-muted/40 text-[11px] ml-2">{t.r} references</span>
+          </button>
+        ))}
+      </div>
+
+      {q.trim().length >= 2 && !hits.length && <Empty>No topic under that name.</Empty>}
+    </>
+  );
+}
+
+
+/* ── alphabets ─────────────────────────────────────────────────────────── */
+
+function AlphabetView() {
+  const [tab, setTab] = useState<'hebrew' | 'greek'>('hebrew');
+
+  return (
+    <>
+      <div className="flex gap-6 mb-6 border-b border-gold-dark/40 pb-3">
+        {(['hebrew', 'greek'] as const).map((t) => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            className={`text-[10px] tracking-widest uppercase transition-colors ${
+              tab === t ? 'text-gold-bright' : 'text-gold-muted/40 hover:text-gold-muted'
+            }`}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'hebrew' && (
+        <>
+          <p className="text-gold-muted/60 text-xs leading-relaxed mb-6">
+            Twenty-two consonants, written right to left. The vowel points were
+            added by the Masoretes between roughly the 7th and 10th centuries AD,
+            preserving a pronunciation carried orally for centuries before that.
+          </p>
+
+          <div className="space-y-4">
+            {HEBREW.map((l) => (
+              <div key={l.name} className="border-b border-gold-dark/30 pb-4">
+                <div className="flex items-baseline gap-4">
+                  <span className="text-gold-bright text-3xl leading-none w-10">{l.letter}</span>
+                  <span className="text-gold-metallic text-xl leading-none w-10">{l.paleo}</span>
+                  <span className="min-w-0">
+                    <span className="block text-gold-metallic text-sm">
+                      {l.name}
+                      <span className="text-gold-muted/50"> · {l.sound} · {l.value}</span>
+                    </span>
+                    <span className="block text-gold-muted/50 text-[11px] mt-0.5">
+                      {l.meaning}{l.final && ` · final form ${l.final}`}
+                    </span>
+                  </span>
+                </div>
+                <p className="text-gold-muted/60 text-xs leading-relaxed mt-2">
+                  {l.origin}
+                  {l.disputed && (
+                    <span className="text-gold-muted/40"> Scholars do not agree on this one.</span>
+                  )}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-gold-muted/40 text-[11px] leading-relaxed mt-6">
+            The second column is Paleo-Hebrew, the script used through the First
+            Temple period. After the exile Jews adopted the Aramaic square script,
+            which is what Hebrew Bibles print today. Same language, different
+            letterforms. If a box appears, your device has no font for the older
+            script.
+          </p>
+
+          <p className="text-gold-muted/30 text-[10px] leading-relaxed mt-4">
+            The letters began as pictures and became sound-signs long before the
+            biblical books were written. Deriving a word's meaning by combining
+            its letters' pictures is taught in some circles but is not accepted
+            by Hebraists; these origins are history, not a key to meaning.
+          </p>
+        </>
+      )}
+
+      {tab === 'greek' && (
+        <>
+          <p className="text-gold-muted/60 text-xs leading-relaxed mb-6">
+            Twenty-four letters, adapted from the Phoenician alphabet and the
+            first to write vowels as letters in their own right. The New
+            Testament was written in Koine, the common Greek of the eastern
+            Mediterranean.
+          </p>
+
+          <div className="space-y-3">
+            {GREEK.map((l) => (
+              <div key={l.name} className="border-b border-gold-dark/30 pb-3">
+                <div className="flex items-baseline gap-4">
+                  <span className="text-gold-bright text-2xl leading-none w-14">
+                    {l.upper}{l.lower}
+                  </span>
+                  <span>
+                    <span className="text-gold-metallic text-sm">{l.name}</span>
+                    <span className="text-gold-muted/50 text-sm"> · {l.sound} · {l.value}</span>
+                  </span>
+                </div>
+                {l.note && (
+                  <p className="text-gold-muted/60 text-xs leading-relaxed mt-1.5">{l.note}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
 /* ── the panel ─────────────────────────────────────────────────────────── */
 
 export function LibraryPanel({ isOpen, onClose, language, onOpenPassage }: Props) {
@@ -743,7 +1405,7 @@ export function LibraryPanel({ isOpen, onClose, language, onOpenPassage }: Props
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: '100%' }}
           transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-          className="fixed inset-0 z-40 bg-sacred-black flex flex-col"
+          className="fixed inset-0 z-sheet bg-sacred-black flex flex-col"
         >
           <div className="flex items-center justify-between px-6 py-4 border-b border-gold-dark">
             {view === 'menu' ? (
@@ -769,13 +1431,20 @@ export function LibraryPanel({ isOpen, onClose, language, onOpenPassage }: Props
             </button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6 pb-24">
+          <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 py-6 pb-24">
             {view === 'menu' && (
               <div className="space-y-1">
                 {SHELVES.map(({ id, icon: Icon, title, note }) => (
                   <button
                     key={id}
-                    onClick={() => setView(id)}
+                    onClick={() => {
+                      if (id === 'project') {
+                        onClose();
+                        window.dispatchEvent(new Event('open-projection'));
+                        return;
+                      }
+                      setView(id);
+                    }}
                     className="flex items-center gap-4 w-full text-left py-4
                                border-b border-gold-dark/30 group"
                   >
@@ -805,7 +1474,9 @@ export function LibraryPanel({ isOpen, onClose, language, onOpenPassage }: Props
             )}
 
             {view === 'search'     && <SearchView language={language} onOpenPassage={onOpenPassage} />}
+            {view === 'topical'    && <TopicalView language={language} onOpenPassage={onOpenPassage} />}
             {view === 'dictionary' && <DictionaryView />}
+            {view === 'alphabet'   && <AlphabetView />}
             {view === 'places'     && <PlacesView />}
             {view === 'hymns'      && <HymnsView language={language} />}
             {view === 'devotional' && <DevotionalView />}
@@ -813,6 +1484,9 @@ export function LibraryPanel({ isOpen, onClose, language, onOpenPassage }: Props
             {view === 'gospel'     && <GospelView language={language} />}
             {view === 'teachings'  && <TeachingsView />}
             {view === 'backup'     && <BackupView />}
+            {view === 'progress'   && <ProgressView />}
+            {view === 'prayers'    && <PrayersView />}
+            {view === 'plans'      && <PlansView onOpenPassage={onOpenPassage} />}
           </div>
         </motion.div>
       )}

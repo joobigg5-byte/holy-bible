@@ -113,7 +113,7 @@ export function NotesPanel({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         animate={{ x: 0 }}
         exit={{ x: '100%' }}
         transition={{ type: 'spring', damping: 30 }}
-        className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-sacred-black border-l border-gold-dark/40 shadow-2xl"
+        className="fixed right-0 top-0 bottom-0 z-sheet w-full max-w-md bg-sacred-black border-l border-gold-dark/40 shadow-2xl"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-gold-dark/40">

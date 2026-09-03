@@ -215,6 +215,11 @@ class BibleServiceImpl {
     if (this.bookCache.has(cacheId)) return this.bookCache.get(cacheId) ?? null;
     try {
       const res = await fetch(`/bibles/${folder}/${slug(book)}.json`);
+      if (res.ok && (res.headers.get('content-type') ?? '').includes('text/html')) {
+        console.warn(`[bible] /bibles/${folder}/${slug(book)}.json missing on the server`);
+        this.bookCache.set(cacheId, null);
+        return null;
+      }
       if (!res.ok) {
         this.bookCache.set(cacheId, null);
         return null;

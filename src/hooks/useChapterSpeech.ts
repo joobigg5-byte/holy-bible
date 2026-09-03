@@ -13,6 +13,8 @@ import {
   chunkText,
   startKeepAlive,
   stopKeepAlive,
+  startWatchdog,
+  stopWatchdog,
   warmUp,
   type ResolvedVoice,
 } from '@/lib/speech';
@@ -35,6 +37,7 @@ export function useChapterSpeech(language: LanguageCode) {
   const stop = useCallback(() => {
     tokenRef.current += 1;
     stopKeepAlive();
+    stopWatchdog();
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
@@ -63,11 +66,17 @@ export function useChapterSpeech(language: LanguageCode) {
     const resolved = resolvedRef.current;
     if (!resolved?.voice) return;
 
+    let advancing = false;
+
     const step = () => {
       if (token !== tokenRef.current) return;
+      if (advancing) return;
+      advancing = true;
+      setTimeout(() => { advancing = false; }, 100);
       const item = queueRef.current[idxRef.current];
       if (!item) {
         stopKeepAlive();
+        stopWatchdog();
         setIsSpeaking(false);
         setCurrentVerse(null);
         return;
@@ -87,6 +96,12 @@ export function useChapterSpeech(language: LanguageCode) {
       };
       window.speechSynthesis.speak(u);
     };
+
+    // See useVerseSpeech — Android stops the queue silently partway through.
+    startWatchdog(
+      () => token === tokenRef.current && idxRef.current < queueRef.current.length,
+      () => step(),
+    );
 
     step();
   }, []);
@@ -108,7 +123,10 @@ export function useChapterSpeech(language: LanguageCode) {
 
       if (resolved.match === 'unavailable') {
         toast({
-          description: `No ${languageNames[language]} voice installed on this device.`,
+          description:
+            `Your device has no ${languageNames[language]} speaking voice. ` +
+            `The text works offline as normal — only the audio needs a voice, ` +
+            `added under Text-to-speech in your phone's settings.`,
         });
         return;
       }

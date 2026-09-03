@@ -47,6 +47,11 @@ check('Hymns',              existsSync('public/hymns/hymns.json'));
 check('Spurgeon',           existsSync('public/devotionals/spurgeon.json'));
 check('Places',             existsSync('public/places/places.json'));
 check('Gospel path',        existsSync('public/gospel/path.json'));
+check("Strong's books",     count('public/strongs/books') >= 66, `${count('public/strongs/books')} books`);
+check("Strong's lexicon",   existsSync('public/strongs/lexicon-H.json') && existsSync('public/strongs/lexicon-G.json'));
+check('Hymn tunes',         existsSync('public/hymns/tunes/tunes.json'));
+check('Topical Bible',      existsSync('public/topical/_index.json'), `${count('public/topical/topics')} topics`);
+check('Letter origins',     existsSync('src/data/alphabets.ts') && existsSync('src/components/LetterOrigins.tsx'));
 check('Icons',              existsSync('public/icons/icon-512.png'));
 check('SPA redirects',      existsSync('public/_redirects'));
 
@@ -59,6 +64,9 @@ check('Settings has reader prefs', idx.includes('ReaderSettings'));
 check('Verse tap opens study', read.includes('VerseStudy'));
 check('Parallel columns render', read.includes('loadParallelChapter'));
 check('Sleep timer on audio', read.includes('useSleepTimer'));
+check('Original-language tab', existsSync('src/components/VerseStudy.tsx') && readFileSync('src/components/VerseStudy.tsx','utf8').includes('strongs'));
+check('Projection view',      idx.includes('ProjectionView'));
+check('Spoken reference parser', existsSync('src/services/spokenReference.ts'));
 
 if (existsSync('src/data/lectionary.ts')) {
   const days = (readFileSync('src/data/lectionary.ts','utf8').match(/\/\/ Day /g) || []).length;

@@ -23,6 +23,10 @@ const KEYS = {
   veil: 'aihb_veil_mode',
   ownQuotes: 'aihb_own_quotes',
   decision: 'aihb_decision',
+  prayers: 'aihb_prayers',
+  readingLog: 'aihb_reading_log',
+  plan: 'aihb_plan',
+  theme: 'aihb_theme',
 } as const;
 
 export interface Backup {
@@ -121,6 +125,16 @@ export function exportMarkdown() {
       lines.push(`> ${q.text}`, '', `— ${q.speaker}`, '');
       if (q.note) lines.push(q.note, '');
     }
+  }
+
+  const prayers = data.prayers as Array<{ text: string; about?: string; answeredAt?: string; answerNote?: string }> | undefined;
+  if (Array.isArray(prayers) && prayers.length) {
+    lines.push('## Prayers', '');
+    for (const p of prayers) {
+      lines.push(`- ${p.text}${p.about ? ` _(${p.about})_` : ''}`);
+      if (p.answerNote) lines.push(`  - **Answered:** ${p.answerNote}`);
+    }
+    lines.push('');
   }
 
   if (lines.length <= 4) lines.push('_Nothing saved yet._');

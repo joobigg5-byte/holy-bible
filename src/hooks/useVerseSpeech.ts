@@ -13,6 +13,8 @@ import {
   chunkText,
   startKeepAlive,
   stopKeepAlive,
+  startWatchdog,
+  stopWatchdog,
   warmUp,
   type ResolvedVoice,
 } from '@/lib/speech';
@@ -33,6 +35,7 @@ export function useVerseSpeech(language: LanguageCode) {
   const cancel = useCallback(() => {
     tokenRef.current += 1;
     stopKeepAlive();
+    stopWatchdog();
     if (typeof window !== 'undefined' && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
@@ -80,7 +83,10 @@ export function useVerseSpeech(language: LanguageCode) {
       if (resolved.match === 'unavailable') {
         if (!opts?.silent) {
           toast({
-            description: `No ${languageNames[language]} voice installed on this device.`,
+            description:
+              `Your device has no ${languageNames[language]} speaking voice. ` +
+              `The text is here and works offline — only the audio needs a voice, ` +
+              `which you add under Text-to-speech in your phone's settings.`,
           });
         }
         return;
@@ -102,11 +108,17 @@ export function useVerseSpeech(language: LanguageCode) {
       setIsSpeaking(true);
       startKeepAlive();
       let i = 0;
+      let advancing = false;
 
       const next = () => {
         if (token !== tokenRef.current) return;
+        if (advancing) return;          // guard against onend and watchdog racing
+        advancing = true;
+        setTimeout(() => { advancing = false; }, 100);
+
         if (i >= queue.length) {
           stopKeepAlive();
+          stopWatchdog();
           setIsSpeaking(false);
           setCurrentVerseIndex(null);
           return;
@@ -117,6 +129,7 @@ export function useVerseSpeech(language: LanguageCode) {
         const u = makeUtterance(item.t, resolved);
         if (!u) {
           stopKeepAlive();
+          stopWatchdog();
           setIsSpeaking(false);
           return;
         }
@@ -127,6 +140,13 @@ export function useVerseSpeech(language: LanguageCode) {
         };
         window.speechSynthesis.speak(u);
       };
+
+      // Android drops the queue after a few utterances without firing onend.
+      // If the engine goes quiet while verses remain, push the next one.
+      startWatchdog(
+        () => token === tokenRef.current && i < queue.length,
+        () => next(),
+      );
 
       next();
     },

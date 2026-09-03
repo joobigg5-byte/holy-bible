@@ -8,8 +8,8 @@ export function ShareButton() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'AI Holy Bible',
-          text: 'Experience the Bible daily with AI Holy Bible. Download it now!',
+          title: 'The Holy Bible',
+          text: 'The Holy Bible \u2014 seventeen languages, read aloud, works offline. No sign-in.',
           url: window.location.origin,
         });
       } catch (err) {

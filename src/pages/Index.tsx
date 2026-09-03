@@ -5,7 +5,10 @@ import {
 } from 'lucide-react';
 import { ScribalVerse } from '@/components/ScribalVerse';
 import { LibraryPanel } from '@/components/LibraryPanel';
+import { ProjectionView } from '@/components/ProjectionView';
 import { ReaderSettings } from '@/components/ReaderSettings';
+import { HomeShortcuts } from '@/components/HomeShortcuts';
+import { SupportLink, SupportIcon } from '@/components/SupportButton';
 import { Attribution } from '@/components/Attribution';
 import { ScribeChat } from '@/components/ScribeChat';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -17,9 +20,11 @@ import { useVerseSpeech } from '@/hooks/useVerseSpeech';
 import { useDailyNotification } from '@/hooks/useDailyNotification';
 import { InstallButton } from '@/components/InstallButton';
 import { ShareButton } from '@/components/ShareButton';
+import { ShareVerseButton } from '@/components/ShareVerseButton';
 import { getTodaysVerse, getWatchLabel, type Verse } from '@/data/lectionary';
 import { fetchVerseText } from '@/services/bibleReader';
 import { DEFAULT_LANGUAGE, type LanguageCode } from '@/data/languages';
+import { detectLanguage } from '@/services/detectLanguage';
 import { toast } from '@/hooks/use-toast';
 
 const LANG_KEY = 'preferredLanguage';
@@ -30,7 +35,9 @@ const AUTO_PLAY_KEY = 'aihb_autoplay';
 export default function Index() {
   const [language, setLanguage] = useState<LanguageCode>(() => {
     if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
-    return (localStorage.getItem(LANG_KEY) as LanguageCode | null) ?? DEFAULT_LANGUAGE;
+    // First visit: start in the reader's own language rather than English.
+    // Once they choose anything, that choice wins for good.
+    return (localStorage.getItem(LANG_KEY) as LanguageCode | null) ?? detectLanguage();
   });
 
   const [scribeOpen, setScribeOpen] = useState(false);
@@ -39,6 +46,7 @@ export default function Index() {
   const [anchorOpen, setAnchorOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
+  const [projecting, setProjecting] = useState(false);
   const [continueVisits, setContinueVisits] = useState(0);
   const [recentChapter, setRecentChapter] = useState<{ book: string; chapter: number } | null>(null);
 
@@ -67,17 +75,20 @@ export default function Index() {
     const openLibrary = () => setNotesOpen(true);   // Library = your notes, as before
     const openNotes = () => { setLibraryOpen(false); setNotesOpen(true); };
     const openDiscover = () => setLibraryOpen(true);   // Explore = everything else
+    const openProjection = () => setProjecting(true);
     const openSettings = () => setSettingsOpen(true);
     const toggleSilence = () => setSilence(prev => !prev);
     window.addEventListener('open-library', openLibrary);
     window.addEventListener('open-notes', openNotes);
     window.addEventListener('open-discover', openDiscover);
+    window.addEventListener('open-projection', openProjection);
     window.addEventListener('open-settings', openSettings);
     window.addEventListener('toggle-silence', toggleSilence);
     return () => {
       window.removeEventListener('open-library', openLibrary);
       window.removeEventListener('open-notes', openNotes);
       window.removeEventListener('open-discover', openDiscover);
+      window.removeEventListener('open-projection', openProjection);
       window.removeEventListener('open-settings', openSettings);
       window.removeEventListener('toggle-silence', toggleSilence);
     };
@@ -168,7 +179,7 @@ export default function Index() {
   if (silence) {
     return (
       <div
-        className="fixed inset-0 z-50 bg-sacred-black overflow-y-auto cursor-pointer"
+        className="fixed inset-0 z-takeover bg-sacred-black overflow-y-auto cursor-pointer"
         onClick={() => setSilence(false)}
       >
         <div className="max-w-2xl mx-auto px-6 py-16">
@@ -199,6 +210,7 @@ export default function Index() {
             >
               <Bell size={18} className={notifEnabled ? 'text-gold-bright' : ''} />
             </button>
+            <SupportIcon />
             <span className="text-gold-muted/40 text-xs">Day {streak}</span>
           </div>
         </div>
@@ -229,9 +241,14 @@ export default function Index() {
         </div>
 
         {/* Install & Share row */}
-        <div className="flex items-center justify-center gap-4 mt-6">
+        <div className="flex items-center justify-center gap-4 mt-6 flex-wrap">
           <InstallButton />
           <ShareButton />
+          <ShareVerseButton
+            text={displayVerse.text}
+            reference={displayVerse.reference}
+            translation={language.toUpperCase()}
+          />
         </div>
 
         {recentChapter && continueVisits < MAX_CONTINUE_VISITS && (
@@ -241,6 +258,8 @@ export default function Index() {
             </button>
           </div>
         )}
+
+        <HomeShortcuts />
 
         <div className="mt-8 text-center">
           <span className="inline-flex items-center gap-1 text-[10px] text-gold-muted/40">
@@ -255,13 +274,14 @@ export default function Index() {
       {/* Settings panel */}
       <AnimatePresence>
         {settingsOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onClick={() => setSettingsOpen(false)}>
-            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 30 }} onClick={e => e.stopPropagation()} className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-sacred-black border-l border-gold-dark/40 shadow-2xl">
-              <div className="flex items-center justify-between p-5 border-b border-gold-dark/40">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-sheet bg-black/60 backdrop-blur-sm" onClick={() => setSettingsOpen(false)}>
+            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 30 }} onClick={e => e.stopPropagation()} className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-sacred-black border-l border-gold-dark/40 shadow-2xl flex flex-col">
+              <div className="flex items-center justify-between p-5 border-b border-gold-dark/40 shrink-0">
                 <h2 className="text-gold-bright text-lg font-serif">Settings</h2>
                 <button onClick={() => setSettingsOpen(false)} className="p-2 text-gold-muted/60 hover:text-gold-bright transition-colors"><X size={20} /></button>
               </div>
-              <div className="p-5 space-y-6">
+              <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 space-y-6
+                              pb-[calc(3rem+env(safe-area-inset-bottom,0px))]">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gold-metallic text-sm font-medium">Auto-play verse</p>
@@ -283,12 +303,21 @@ export default function Index() {
                   <span className="text-gold-muted/40 text-xs">{isVeil ? 'Active' : 'Inactive'}</span>
                 </div>
                 <ReaderSettings language={language} />
+                <div className="pt-2">
+                  <SupportLink />
+                </div>
+                <Attribution />
               </div>
-              <Attribution />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ProjectionView
+        open={projecting}
+        onClose={() => setProjecting(false)}
+        language={language}
+      />
 
       <LibraryPanel
         isOpen={libraryOpen}

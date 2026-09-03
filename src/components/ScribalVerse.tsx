@@ -186,7 +186,7 @@ export function ScribalVerse({
               }}
               aria-label={isSpeaking ? 'Stop audio' : 'Listen to verse'}
               title={isSpeaking ? 'Stop audio' : 'Listen to verse'}
-              className={`text-gold-muted/60 hover:text-gold-bright transition-colors ${isSpeaking ? 'text-gold-bright' : ''}`}
+              className={`p-3 -m-3 text-gold-muted/60 hover:text-gold-bright transition-colors ${isSpeaking ? 'text-gold-bright' : ''}`}
             >
               {isSpeaking ? <Square size={12} fill="currentColor" /> : <Headphones size={12} />}
             </button>
@@ -210,7 +210,7 @@ export function ScribalVerse({
               disabled={isAIReflecting}
               aria-label="Generate AI reflection"
               title="Generate AI reflection"
-              className="text-gold-muted/60 hover:text-gold-bright transition-colors"
+              className="p-3 -m-3 text-gold-muted/60 hover:text-gold-bright transition-colors"
             >
               {isAIReflecting ? <span className="text-xs">...</span> : <Sparkles size={12} />}
             </button>

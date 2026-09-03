@@ -31,6 +31,8 @@ export interface Hymn {
   lines: number;
   /** Present when the hymn's rights status needs checking before display. */
   rightsReview?: string;
+  /** Key into tunes.json when a playable melody exists. */
+  tune?: string;
 }
 
 let cache: Hymn[] | null = null;

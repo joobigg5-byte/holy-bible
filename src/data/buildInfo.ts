@@ -3,7 +3,10 @@
  * which build is actually running — file dates and browser caches lie.
  */
 export const BUILD = {
-  id: 'HB-15',
+  /** Public version, shown to readers and sent to the support form. */
+  version: '1.0',
+  /** Internal build id, for pinning down which code someone is running. */
+  id: 'HB-35',
   date: '2026-08-23',
   translations: 17,
   features: [
@@ -22,5 +25,16 @@ export const BUILD = {
     'Coming to Christ',
     'Wisdom and teaching',
     'Backup and restore',
+    'Colour themes',
+    'Lock-screen audio controls',
+    'Share a verse as an image',
+    'Reading progress and history',
+    'Prayer list',
+    'Reading plans',
+    'Four-part hymn tunes played in the browser',
+    "Strong's Hebrew and Greek",
+    'Projection with spoken verse detection',
+    "Nave's Topical Bible",
+    'Hebrew and Greek letter origins',
   ],
 } as const;

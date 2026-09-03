@@ -11,11 +11,14 @@ import { useBibleChapter } from '@/hooks/useBibleChapter';
 import { useRecentChapters } from '@/hooks/useRecentChapters';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { DEFAULT_LANGUAGE, type LanguageCode, languageNames } from '@/data/languages';
+import { detectLanguage } from '@/services/detectLanguage';
 import { preloadPopularBooks } from '@/services/bibleReader';
 import { useVerseSpeech } from '@/hooks/useVerseSpeech';
 import { VerseStudy } from '@/components/VerseStudy';
-import { loadParallelChapter, getParallelPref, versificationNote, type ParallelChapter } from '@/services/parallelReading';
+import { loadParallelChapter, getParallelPref, setParallelPref, versificationNote, type ParallelChapter } from '@/services/parallelReading';
 import { useSleepTimer, TIMER_OPTIONS, type TimerMinutes } from '@/hooks/useSleepTimer';
+import { useMediaSession } from '@/hooks/useMediaSession';
+import { logChapter } from '@/services/progress';
 
 const POSITION_KEY = 'bibleReader:position';
 const LANG_KEY = 'preferredLanguage';
@@ -28,7 +31,9 @@ const DEFAULT_POS: Position = { book: 'John', chapter: 1 };
 const ReadBible = () => {
   const [language, setLanguage] = useState<LanguageCode>(() => {
     if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
-    return (localStorage.getItem(LANG_KEY) as LanguageCode | null) ?? DEFAULT_LANGUAGE;
+    // First visit: start in the reader's own language rather than English.
+    // Once they choose anything, that choice wins for good.
+    return (localStorage.getItem(LANG_KEY) as LanguageCode | null) ?? detectLanguage();
   });
   const [position, setPosition] = useState<Position>(() => {
     if (typeof window === 'undefined') return DEFAULT_POS;
@@ -46,7 +51,7 @@ const ReadBible = () => {
   const [study, setStudy] = useState<number | null>(null);
   const [timerOpen, setTimerOpen] = useState(false);
   const [parallel, setParallel] = useState<ParallelChapter | null>(null);
-  const pref = getParallelPref();
+  const [pref, setPref] = useState(() => getParallelPref(language));
   const dragged = useRef(false);
 
   const book = findBook(position.book) ?? findBook('John')!;
@@ -77,15 +82,50 @@ const ReadBible = () => {
     [data],
   );
 
+  // Settings lives on another screen; keep in step with it
+  useEffect(() => {
+    const sync = () => setPref(getParallelPref(language));
+    window.addEventListener('parallel-changed', sync);
+    window.addEventListener('focus', sync);
+    return () => {
+      window.removeEventListener('parallel-changed', sync);
+      window.removeEventListener('focus', sync);
+    };
+  }, [language]);
+
+  // If the chosen second language is the one already being read, the two
+  // columns would be identical and nothing appeared to happen. Fall back to a
+  // sensible different translation rather than silently doing nothing.
+  const secondary = pref.secondary !== language
+    ? pref.secondary
+    : (language === 'kjv' ? 'twi' : 'kjv');
+
   // Second column, loaded only when the reader has asked for one
   useEffect(() => {
-    if (!pref.enabled || pref.secondary === language) { setParallel(null); return; }
+    if (!pref.enabled) { setParallel(null); return; }
     let cancelled = false;
-    loadParallelChapter(book.name, position.chapter, language, pref.secondary)
+    loadParallelChapter(book.name, position.chapter, language, secondary)
       .then((p) => { if (!cancelled) setParallel(p); })
       .catch(() => { if (!cancelled) setParallel(null); });
     return () => { cancelled = true; };
-  }, [pref.enabled, pref.secondary, language, book.name, position.chapter]);
+  }, [pref.enabled, secondary, language, book.name, position.chapter]);
+
+  // Record what was read, for Progress
+  useEffect(() => {
+    if (!verses.length) return;
+    logChapter(book.name, position.chapter, language);
+  }, [book.name, position.chapter, language, verses.length]);
+
+  // Lock-screen controls and a wake lock, so audio survives the screen going off
+  useMediaSession({
+    isPlaying: isSpeaking,
+    title: `${book.name === 'Psalms' ? 'Psalm' : book.name} ${position.chapter}`,
+    album: languageNames[language],
+    onPlay: () => speak(verses),
+    onPause: () => stop(),
+    onNext: () => goNext(),
+    onPrevious: () => goPrev(),
+  });
 
   const sleep = useSleepTimer({
     onExpire: () => stop(),
@@ -134,7 +174,7 @@ const ReadBible = () => {
   if (silence) {
     return (
       <div
-        className="fixed inset-0 z-50 bg-sacred-black overflow-y-auto cursor-pointer"
+        className="fixed inset-0 z-takeover bg-sacred-black overflow-y-auto cursor-pointer"
         onClick={() => setSilence(false)}
       >
         <div className="max-w-2xl mx-auto px-6 py-16">
@@ -164,7 +204,7 @@ const ReadBible = () => {
             onClick={() => setBrowserOpen(true)}
             className="text-gold-bright text-base tracking-wide hover:text-gold-muted transition-colors"
           >
-            {displayBook} {position.chapter}
+            <span className="whitespace-nowrap">{displayBook} {position.chapter}</span>
           </button>
 
           <div className="flex items-center gap-3">
@@ -179,6 +219,16 @@ const ReadBible = () => {
               ) : (
                 <Headphones size={16} />
               )}
+            </button>
+            <button
+              onClick={() => {
+                const next = !pref.enabled;
+                setPref(setParallelPref({ enabled: next }));
+              }}
+              className={`transition-colors ${pref.enabled ? 'text-gold-bright' : 'text-gold-muted/60 hover:text-gold-bright'}`}
+              title="Two languages side by side"
+            >
+              <Columns2 size={16} />
             </button>
             <button
               onClick={() => setTimerOpen(!timerOpen)}
@@ -249,7 +299,16 @@ const ReadBible = () => {
           </div>
         ) : verses.length === 0 ? (
           <div className="text-center py-24">
-            <p className="text-gold-muted/60 mb-4">Connect to download this chapter.</p>
+            <p className="text-gold-muted/60 mb-2">
+              {navigator.onLine
+                ? 'This chapter could not be loaded.'
+                : 'This chapter is not saved on your device yet.'}
+            </p>
+            <p className="text-gold-muted/40 text-xs mb-4">
+              {navigator.onLine
+                ? 'Try another chapter, or a different language, and let us know if it keeps happening.'
+                : 'Connect once and it will be kept for offline reading.'}
+            </p>
           </div>
         ) : (
           <AnimatePresence mode="wait" initial={false}>
@@ -272,7 +331,7 @@ const ReadBible = () => {
             >
               {parallel ? (
                 parallel.rows.map(row => (
-                  <div key={row.verse} className="grid grid-cols-2 gap-x-5">
+                  <div key={row.verse} className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-x-5 gap-y-1">
                     <p
                       onClick={() => { if (!dragged.current) setStudy(row.verse); }}
                       className={`text-[0.94rem] leading-[1.75] cursor-pointer transition-colors ${
@@ -282,7 +341,9 @@ const ReadBible = () => {
                       <sup className="text-[#B8960C] text-xs mr-1.5 font-sans">{row.verse}</sup>
                       {row.primary ?? <span className="text-gold-muted/25">—</span>}
                     </p>
-                    <p className="text-[0.94rem] leading-[1.75] text-gold-muted/75">
+                    <p className="text-[0.94rem] leading-[1.75] text-gold-muted/75
+                                  pl-4 border-l border-gold-dark/40
+                                  min-[380px]:pl-0 min-[380px]:border-l-0">
                       {row.secondary ?? <span className="text-gold-muted/25">—</span>}
                     </p>
                   </div>
@@ -309,7 +370,7 @@ const ReadBible = () => {
           {timerOpen && (
             <motion.div
               initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-              className="fixed top-20 right-5 z-30 bg-card border border-gold-dark rounded-lg px-4 py-3 shadow-xl"
+              className="fixed top-20 right-5 z-sheet bg-card border border-gold-dark rounded-lg px-4 py-3 shadow-xl"
             >
               <p className="text-[10px] tracking-[0.2em] uppercase text-gold-muted/60 mb-3">
                 {sleep.isRunning ? `Stops in ${sleep.label}` : 'Read until'}
@@ -355,7 +416,7 @@ const ReadBible = () => {
             <ChevronLeft size={16} /> Prev
           </button>
           <button onClick={() => setBrowserOpen(true)} className="text-xs tracking-[0.2em] uppercase text-gold-bright hover:text-gold-muted transition-colors">
-            {displayBook} {position.chapter} ▼
+            <span className="whitespace-nowrap">{displayBook} {position.chapter}</span> ▼
           </button>
           <button onClick={goNext} className="flex items-center gap-2 text-gold-muted/60 hover:text-gold-bright transition-colors text-xs tracking-[0.2em] uppercase">
             Next <ChevronRight size={16} />
@@ -371,14 +432,14 @@ const ReadBible = () => {
         {anchorOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-sacred-black overflow-y-auto"
+            className="fixed inset-0 z-takeover bg-sacred-black overflow-y-auto"
           >
             <button onClick={() => setAnchorOpen(false)} className="absolute top-5 right-5 text-gold-muted/60 hover:text-gold-bright">
               <X size={18} />
             </button>
             <div className="max-w-2xl mx-auto px-8 py-16">
               <p className="text-[10px] tracking-[0.3em] uppercase text-gold-muted/50 text-center mb-8">
-                Source Text — {displayBook} {position.chapter}
+                Source Text — <span className="whitespace-nowrap">{displayBook} {position.chapter}</span>
               </p>
               <p className="text-lg leading-[1.9] text-gold-metallic">
                 {verses.map(v => `${v.n} ${v.t}`).join(' ')}
@@ -394,12 +455,12 @@ const ReadBible = () => {
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setBrowserOpen(false)}
-              className="fixed inset-0 z-30 bg-sacred-black/80"
+              className="fixed inset-0 z-overlay bg-sacred-black/80"
             />
             <motion.div
               initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-x-0 bottom-0 z-40 bg-sacred-black border-t border-gold-dark rounded-t-2xl max-h-[85vh] overflow-hidden flex flex-col"
+              className="fixed inset-x-0 bottom-0 z-sheet bg-sacred-black border-t border-gold-dark rounded-t-2xl max-h-[85vh] overflow-hidden flex flex-col"
             >
               <div className="mx-auto mt-3 mb-2 h-1 w-12 rounded-full bg-gold-dark" />
               <div className="flex justify-center gap-6 pb-3 border-b border-gold-dark/40">

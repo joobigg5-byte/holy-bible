@@ -34,6 +34,14 @@ const SOURCES: Source[] = [
     required: true,
   },
   {
+    what: 'Topical index',
+    credit: "Nave's Topical Bible (Orville J. Nave, 1897). Public domain.",
+  },
+  {
+    what: 'Original languages',
+    credit: "Strong's Exhaustive Concordance (1890), with the Hebrew and Greek lexicons. Public domain.",
+  },
+  {
     what: 'Commentary',
     credit: "Matthew Henry's Complete Commentary (1708–1710). Public domain.",
   },
@@ -44,6 +52,11 @@ const SOURCES: Source[] = [
   {
     what: 'Hymns',
     credit: 'Classic gospel hymnody. Public domain.',
+  },
+  {
+    what: 'Hymn tunes',
+    credit: 'The Open Hymnal Project — freely distributable scores, converted from ABC notation.',
+    url: 'http://openhymnal.org/',
   },
   {
     what: 'Ancient writings',

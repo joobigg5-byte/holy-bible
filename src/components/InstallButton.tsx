@@ -55,7 +55,7 @@ export function InstallButton() {
 
       {showIOSTip && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="fixed inset-0 z-sheet flex items-center justify-center bg-black/60"
           onClick={() => setShowIOSTip(false)}
         >
           <div

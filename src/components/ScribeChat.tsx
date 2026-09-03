@@ -118,7 +118,7 @@ export function ScribeChat({ onClose, isVeil, language = DEFAULT_LANGUAGE }: Scr
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: '100%' }}
         transition={{ type: 'spring', damping: 25 }}
-        className="fixed inset-0 bg-sacred-black z-40 flex flex-col"
+        className="fixed inset-0 bg-sacred-black z-sheet flex flex-col"
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gold-dark">
           <h2 className="font-book-name text-sm text-gold-muted tracking-[0.2em]">The Scribe</h2>
@@ -131,7 +131,7 @@ export function ScribeChat({ onClose, isVeil, language = DEFAULT_LANGUAGE }: Scr
           </button>
         </div>
 
-        <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+        <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 py-6 space-y-6">
           {messages.length === 0 && (
             <p className="text-center text-gold-muted text-sm italic opacity-60 mt-12">
               Speak what weighs upon your heart…

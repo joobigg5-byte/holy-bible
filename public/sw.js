@@ -73,6 +73,20 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // let cross-origin pass through
 
+  // Never touch the dev server. Vite serves modules from /src, /@vite, /@id and
+  // /node_modules, and caching those means the browser keeps replaying stale
+  // source no matter how often you rebuild.
+  if (
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/node_modules/') ||
+    url.search.includes('t=') ||
+    url.pathname.endsWith('.tsx') ||
+    url.pathname.endsWith('.ts')
+  ) {
+    return;
+  }
+
   // SPA navigation — always serve the shell so deep links work offline
   if (request.mode === 'navigate') {
     event.respondWith(networkFirstShell(request));
@@ -86,6 +100,8 @@ self.addEventListener('fetch', (event) => {
     url.pathname.startsWith('/bibles/') ||
     url.pathname.startsWith('/commentary/') ||
     url.pathname.startsWith('/devotionals/') ||
+    url.pathname.startsWith('/strongs/') ||
+    url.pathname.startsWith('/topical/') ||
     url.pathname === '/scribe-index.json' ||
     url.pathname === '/cross-references.json'
   ) {

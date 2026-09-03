@@ -36,14 +36,14 @@ export function VerseSheet({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-sacred-black/70 z-40"
+            className="fixed inset-0 bg-sacred-black/70 z-overlay"
           />
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-gold-dark rounded-t-2xl px-6 pt-4 pb-8"
+            className="fixed bottom-0 left-0 right-0 z-sheet bg-card border-t border-gold-dark rounded-t-2xl px-6 pt-4 pb-8"
           >
             <div className="mx-auto w-10 h-1 rounded-full bg-gold-muted/30 mb-5" />
             <div className="flex items-center justify-between mb-6">

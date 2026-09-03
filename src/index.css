@@ -175,3 +175,199 @@
 .lang-scroll::-webkit-scrollbar-button {
   display: none;
 }
+
+
+/* ---------------------------------------------------------------------------
+   Third-party widgets and the bottom nav
+
+   Support/chat widgets pin themselves to the bottom-right with a very high
+   z-index, which puts them straight on top of the Settings tab. Rather than
+   fighting over z-index, lift anything pinned down there above the nav bar.
+
+   --app-nav-height is the nav's own height; keep them in step if the nav
+   changes.
+--------------------------------------------------------------------------- */
+
+:root {
+  --app-nav-height: 58px;
+}
+
+/* OPTION: hide the floating support widget on phones entirely.
+   A pill floating over scripture is intrusive on a small screen, and there is
+   nowhere in the bottom-right corner it can sit without covering something.
+   Uncomment this block and put a Support link in Settings instead.
+
+@media (max-width: 640px) {
+  #support-widget,
+  [class*="support-widget"],
+  [id*="support-widget"] {
+    display: none !important;
+  }
+}
+*/
+
+/* Common widget containers, lifted clear of the nav */
+#launcher,
+#hubspot-messages-iframe-container,
+.crisp-client,
+#crisp-chatbox,
+#tawkchat-container,
+#chat-widget-container,
+#intercom-container,
+.intercom-lightweight-app,
+#beacon-container,
+[class*="support-widget"],
+[id*="support-widget"],
+[class*="feedback-widget"],
+[id*="feedback-widget"] {
+  bottom: calc(var(--app-nav-height) + 8px) !important;
+  z-index: 55 !important;
+}
+
+/* Give scrollable pages room so nothing sits under the nav or a widget
+   pinned above it. Without this the last row of content is unreachable. */
+:root {
+  --app-widget-clearance: 56px;
+}
+
+main,
+.app-scroll-area {
+  padding-bottom: calc(
+    var(--app-nav-height) + var(--app-widget-clearance) + env(safe-area-inset-bottom, 0px)
+  );
+}
+
+body {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* On phones the nav is the last thing on screen; keep it above the home bar */
+@supports (padding: max(0px)) {
+  .app-bottom-nav {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Themes
+
+   Every colour in the app already comes from these variables, so a theme is
+   just a different set of values — no component changes anywhere.
+
+   The gold-* names are kept even where a theme isn't gold, so existing markup
+   keeps working. Read them as "primary / secondary / emphasis / border / faint".
+--------------------------------------------------------------------------- */
+
+/* Parchment — for reading in daylight. Warm paper, dark ink. */
+[data-theme='parchment'] {
+  --background: 40 32% 93%;
+  --foreground: 28 40% 22%;
+  --card: 40 38% 97%;
+  --card-foreground: 28 40% 22%;
+  --popover: 40 38% 97%;
+  --popover-foreground: 28 40% 22%;
+  --primary: 28 45% 30%;
+  --primary-foreground: 40 32% 96%;
+  --secondary: 32 40% 40%;
+  --secondary-foreground: 40 32% 96%;
+  --muted: 38 28% 86%;
+  --muted-foreground: 30 25% 42%;
+  --accent: 25 65% 33%;
+  --accent-foreground: 40 32% 96%;
+  --border: 36 25% 80%;
+  --input: 36 25% 80%;
+  --ring: 28 45% 30%;
+
+  --gold-metallic: 28 42% 24%;
+  --gold-muted: 30 32% 38%;
+  --gold-bright: 22 70% 30%;
+  --gold-dark: 36 26% 79%;
+  --gold-veil: 33 22% 55%;
+  --sacred-black: 40 32% 93%;
+
+  color-scheme: light;
+}
+
+/* Midnight — cooler and quieter than Sanctuary, for late reading. */
+[data-theme='midnight'] {
+  --background: 224 30% 6%;
+  --foreground: 210 28% 74%;
+  --card: 224 30% 9%;
+  --card-foreground: 210 28% 74%;
+  --popover: 224 30% 10%;
+  --popover-foreground: 210 28% 74%;
+  --primary: 205 45% 70%;
+  --primary-foreground: 224 30% 6%;
+  --secondary: 210 25% 50%;
+  --secondary-foreground: 224 30% 6%;
+  --muted: 220 28% 16%;
+  --muted-foreground: 210 22% 55%;
+  --accent: 198 75% 70%;
+  --accent-foreground: 224 30% 6%;
+  --border: 220 28% 17%;
+  --input: 220 28% 17%;
+  --ring: 205 45% 70%;
+
+  --gold-metallic: 210 30% 73%;
+  --gold-muted: 210 24% 53%;
+  --gold-bright: 198 78% 74%;
+  --gold-dark: 220 30% 18%;
+  --gold-veil: 214 20% 42%;
+  --sacred-black: 224 32% 5%;
+
+  color-scheme: dark;
+}
+
+/* Ember — warm firelight, softer on the eyes than pure gold on black. */
+[data-theme='ember'] {
+  --background: 20 26% 5%;
+  --foreground: 30 62% 60%;
+  --card: 20 26% 8%;
+  --card-foreground: 30 62% 60%;
+  --popover: 20 26% 9%;
+  --popover-foreground: 30 62% 60%;
+  --primary: 30 62% 60%;
+  --primary-foreground: 20 26% 5%;
+  --secondary: 25 58% 44%;
+  --secondary-foreground: 20 26% 5%;
+  --muted: 22 44% 12%;
+  --muted-foreground: 27 40% 46%;
+  --accent: 35 92% 60%;
+  --accent-foreground: 20 26% 5%;
+  --border: 22 44% 13%;
+  --input: 22 44% 13%;
+  --ring: 30 62% 60%;
+
+  --gold-metallic: 30 62% 60%;
+  --gold-muted: 25 56% 44%;
+  --gold-bright: 35 92% 60%;
+  --gold-dark: 22 46% 13%;
+  --gold-veil: 28 38% 32%;
+  --sacred-black: 20 28% 4%;
+
+  color-scheme: dark;
+}
+
+/* Themes fade rather than snap, which matters at night. */
+html {
+  transition: background-color 240ms ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Stacking order
+
+   Raising the bottom nav to sit above the support widget accidentally put it
+   above every panel in the app, which hid the last item in the language list
+   and the foot of every sheet. Fixed values, in one place:
+
+     30  page-level furniture (timer popover)
+     40  overlay behind a panel
+     60  bottom navigation
+     70  overlay behind a sheet that must cover the nav
+     80  panels and sheets (Settings, Explore, language, verse study)
+     90  full-screen takeovers (veil, anchor)
+--------------------------------------------------------------------------- */
+.z-overlay  { z-index: 70; }
+.z-sheet    { z-index: 80; }
+.z-takeover { z-index: 90; }

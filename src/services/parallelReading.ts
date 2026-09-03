@@ -17,6 +17,7 @@
  */
 import type { LanguageCode } from '@/data/languages';
 import { loadChapter, type Chapter } from './bibleReader';
+import { suggestSecondLanguage } from './detectLanguage';
 
 export interface ParallelRow {
   /** Verse number as it appears in whichever translation has it. */
@@ -125,23 +126,46 @@ export interface ParallelPref {
 
 const DEFAULTS: ParallelPref = {
   enabled: false,
+  // Resolved per reader in getParallelPref(); this placeholder is never used
+  // directly. Hardcoding one language here made a global app default to Twi.
   secondary: 'kjv',
   scrollTogether: true,
   followAudio: true,
 };
 
-export function getParallelPref(): ParallelPref {
+/**
+ * @param primary the language currently being read, so the suggested second
+ *        column is never the same one.
+ */
+export function getParallelPref(primary?: LanguageCode): ParallelPref {
+  let stored: Partial<ParallelPref> = {};
   try {
     const raw = localStorage.getItem(KEY);
-    return raw ? { ...DEFAULTS, ...(JSON.parse(raw) as Partial<ParallelPref>) } : DEFAULTS;
+    if (raw) stored = JSON.parse(raw) as Partial<ParallelPref>;
   } catch {
-    return DEFAULTS;
+    /* fall through to defaults */
   }
+
+  // Only suggest when the reader has never chosen, or their choice would
+  // duplicate the language they are already reading.
+  const needsSuggestion =
+    !stored.secondary || (primary !== undefined && stored.secondary === primary);
+
+  return {
+    ...DEFAULTS,
+    ...stored,
+    secondary: needsSuggestion
+      ? suggestSecondLanguage(primary ?? 'kjv')
+      : (stored.secondary as LanguageCode),
+  };
 }
 
 export function setParallelPref(patch: Partial<ParallelPref>): ParallelPref {
   const next = { ...getParallelPref(), ...patch };
   localStorage.setItem(KEY, JSON.stringify(next));
+  // Settings and the reader are different screens. Without this, a change made
+  // in Settings would not reach an already-mounted reader.
+  window.dispatchEvent(new CustomEvent('parallel-changed', { detail: next }));
   return next;
 }
 

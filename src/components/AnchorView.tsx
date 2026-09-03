@@ -8,7 +8,7 @@ interface AnchorViewProps {
 export function AnchorView({ verse, onClose }: AnchorViewProps) {
   return (
     <div
-      className="fixed inset-0 bg-sacred-black z-50 flex flex-col items-center justify-center px-8 cursor-pointer"
+      className="fixed inset-0 bg-sacred-black z-takeover flex flex-col items-center justify-center px-8 cursor-pointer"
       onClick={onClose}
     >
       <p className="text-lg sm:text-xl leading-[1.8] text-gold-metallic text-center max-w-lg italic">

@@ -56,6 +56,14 @@ async function loadLocalChapter(
     const bookSlug = book.toLowerCase().replace(/ /g, '_');
     const resp = await fetch(`/bibles/${folder}/${bookSlug}.json`);
     if (!resp.ok) return null;
+    // A single-page-app rewrite returns index.html for anything missing, so a
+    // 200 does not guarantee JSON. Without this the HTML fails to parse and the
+    // reader tells the user to "connect to download" a file that was simply
+    // never deployed.
+    if ((resp.headers.get('content-type') ?? '').includes('text/html')) {
+      console.warn(`[bible] /bibles/${folder}/${bookSlug}.json is missing on the server`);
+      return null;
+    }
     const bookData = await resp.json();
     const chapterData = bookData[String(chapter)] as Record<string, string> | undefined;
     if (!chapterData) return null;
