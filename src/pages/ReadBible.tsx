@@ -98,6 +98,35 @@ const ReadBible = () => {
     if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
     // First visit: start in the reader's own language rather than English.
     // Once they choose anything, that choice wins for good.
+
+  // The verse asked for in the address, once the chapter has rendered.
+  // Text loads asynchronously, so scrolling too early finds nothing and
+  // fails quietly — hence waiting on verses.length rather than mount.
+  const scrolledTo = useRef<string | null>(null);
+  useEffect(() => {
+    const target = (position as unknown as Record<string, unknown>).verse;
+    if (!target || !verses.length) return;
+
+    const key = `${(position as unknown as Record<string, unknown>).book}-${position.chapter}-${target}`;
+    if (scrolledTo.current === key) return;
+
+    const el = document.getElementById(`v${target}`);
+    if (!el) return;
+
+    scrolledTo.current = key;
+
+    // A frame's delay lets layout settle, so the verse lands where it
+    // should rather than a few hundred pixels off.
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // A verse scrolled into a screen of similar text is still hard to
+      // pick out. A moment of emphasis says "this one".
+      el.classList.add('verse-linked');
+      window.setTimeout(() => el.classList.remove('verse-linked'), 2400);
+    });
+  }, [verses.length, position]);
+
     return (localStorage.getItem(LANG_KEY) as LanguageCode | null) ?? detectLanguage();
   });
   const [position, setPosition] = useState<Position>(() => {
@@ -426,6 +455,8 @@ const ReadBible = () => {
                 verses.map(v => (
                   <p
                     key={v.n}
+                    id={`v${v.n}`}
+                    data-verse={v.n}
                     onClick={() => { if (!dragged.current) setStudy(v.n); }}
                     className={`cursor-pointer transition-colors ${
                       currentVerseIndex === v.n ? 'text-gold-bright' : 'text-gold-metallic'
