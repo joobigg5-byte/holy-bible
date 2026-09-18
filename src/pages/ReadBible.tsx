@@ -28,6 +28,71 @@ interface Verse { n: number; t: string; }
 
 const DEFAULT_POS: Position = { book: 'John', chapter: 1 };
 
+
+/**
+ * A position from the address bar, if there is one.
+ *
+ * Accepts the short form people can type — ?b=john&c=3&v=16 — and the
+ * long one a link might carry. Book names are matched loosely because
+ * "1 John", "1john" and "1-john" are all the same book to a person.
+ */
+function positionFromUrl(): Partial<Position> | null {
+  if (typeof window === 'undefined') return null;
+
+  const p = new URLSearchParams(window.location.search);
+  const book = p.get('b') ?? p.get('book');
+  const chapter = p.get('c') ?? p.get('chapter');
+  const verse = p.get('v') ?? p.get('verse');
+
+  if (!book && !chapter) return null;
+
+  const out: Record<string, unknown> = {};
+  if (book) out.book = normaliseBookName(book);
+  if (chapter) {
+    const n = parseInt(chapter, 10);
+    if (Number.isFinite(n) && n > 0) out.chapter = n;
+  }
+  if (verse) {
+    const n = parseInt(verse, 10);
+    if (Number.isFinite(n) && n > 0) out.verse = n;
+  }
+
+  return Object.keys(out).length ? (out as Partial<Position>) : null;
+}
+
+/** "1john" and "1-John" and "1 john" all mean the same book. */
+function normaliseBookName(raw: string): string {
+  return decodeURIComponent(raw)
+    .replace(/[-_+]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+    .replace(/^(\d)\s*/, '$1 ')
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
+/**
+ * Keeps the address bar in step with where the reader is.
+ *
+ * replaceState rather than pushState: scrolling through a chapter should
+ * not fill the back button with a hundred entries.
+ */
+function writePositionToUrl(pos: Position) {
+  if (typeof window === 'undefined') return;
+  try {
+    const p = new URLSearchParams();
+    const anyPos = pos as unknown as Record<string, unknown>;
+    if (anyPos.book) p.set('b', String(anyPos.book).toLowerCase().replace(/\s+/g, '-'));
+    if (anyPos.chapter) p.set('c', String(anyPos.chapter));
+    if (anyPos.verse) p.set('v', String(anyPos.verse));
+    const next = window.location.pathname + '?' + p.toString();
+    if (next !== window.location.pathname + window.location.search) {
+      window.history.replaceState(null, '', next);
+    }
+  } catch { /* an address that will not update is not worth an error */ }
+}
+
+
 const ReadBible = () => {
   const [language, setLanguage] = useState<LanguageCode>(() => {
     if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
@@ -37,11 +102,19 @@ const ReadBible = () => {
   });
   const [position, setPosition] = useState<Position>(() => {
     if (typeof window === 'undefined') return DEFAULT_POS;
-    try {
-      const raw = localStorage.getItem(POSITION_KEY);
-      if (raw) return JSON.parse(raw) as Position;
-    } catch { /* noop */ }
-    return DEFAULT_POS;
+
+    // Someone following a link wants the verse in the link, not their
+    // own last page. So the URL wins.
+    const saved = (() => {
+      try {
+        const raw = localStorage.getItem(POSITION_KEY);
+        if (raw) return JSON.parse(raw) as Position;
+      } catch { /* noop */ }
+      return DEFAULT_POS;
+    })();
+
+    const fromUrl = positionFromUrl();
+    return fromUrl ? ({ ...saved, ...fromUrl } as Position) : saved;
   });
   const [browserOpen, setBrowserOpen] = useState(false);
   const [testament, setTestament] = useState<'OT' | 'NT'>('NT');
@@ -60,6 +133,7 @@ const ReadBible = () => {
   const { isSpeaking, currentVerseIndex, speak, stop } = useVerseSpeech(language);
 
   useEffect(() => { localStorage.setItem(POSITION_KEY, JSON.stringify(position)); }, [position]);
+    writePositionToUrl(position);
   useEffect(() => { localStorage.setItem(LANG_KEY, language); }, [language]);
 
   useEffect(() => {
